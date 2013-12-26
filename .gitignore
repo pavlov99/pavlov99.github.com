@@ -1,0 +1,7 @@
+*~
+build/
+.coverage
+*django.mo
+.DS_Store
+.env
+.vimrc
