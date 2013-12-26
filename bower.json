@@ -12,6 +12,7 @@
   "devDependencies": {
     "jquery": "2.0.3",
     "less.js": "1.5.1",
+    "font-awesome": "4.0.3",
     "bootstrap": "3.0.3"
   },
   "ignore": [
