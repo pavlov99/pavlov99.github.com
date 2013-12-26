@@ -6,6 +6,7 @@ NC=\033[0m
 
 .PHONY: all
 all:	$(ENV_DIR)
+	@pelican _src/
 
 .PHONY: help
 # target: help - Display callable targets
