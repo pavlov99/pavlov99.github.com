@@ -20,6 +20,10 @@ clean:
 	@find . -name "*.deb" -delete
 	@find . -name "*.orig" -delete
 
+.PHONY: run
+run:
+	$(PYTHON) -m SimpleHTTPServer
+
 $(ENV_DIR): requirements.txt
 	[ -d $(ENV_DIR) ] || virtualenv --no-site-packages $(ENV_DIR)
 	$(ENV_DIR)/bin/pip install -M -r requirements.txt
