@@ -6,3 +6,4 @@ build/
 .env
 .vimrc
 *.py[oc]
+bower_components

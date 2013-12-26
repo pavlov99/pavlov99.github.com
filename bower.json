@@ -9,6 +9,10 @@
   "main": "main.css",
   "license": "MIT",
   "private": true,
+  "devDependencies": {
+    "jquery": "2.0.3",
+    "bootstrap": "*"
+  },
   "ignore": [
     "**/.*",
     "node_modules",
