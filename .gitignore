@@ -7,3 +7,4 @@ build/
 .vimrc
 *.py[oc]
 bower_components
+node_modules
