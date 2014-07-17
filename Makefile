@@ -5,8 +5,11 @@ RED=\033[0;31m
 NC=\033[0m
 
 .PHONY: all
-all:	$(ENV_DIR)
-	@pelican _src/
+all:	#$(ENV_DIR)
+	#@pelican _src/
+	@npm install
+	@bower install
+
 
 .PHONY: help
 # target: help - Display callable targets
