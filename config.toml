@@ -9,13 +9,26 @@ title = "Kirill Pavlov"
 [author]
     name = "Kirill Pavlov"
 
+[permalinks]
+    # Change the permalink format for the 'post' content type.
+    post = "/blog/:year/:month/:day/:title/"
+
 
 [params]
     # Default page metadata, used when the specific page doesn't set its own.
     defaultDescription = "Personal website, where my information is shared. It has posts about tech, data mining, software and stock trading."
     defaultKeywords = "kirill pavlov,software,blog,cv,development,data mining,trading,analysis"
 
+    # Changes sidebar background and link/accent colours.
+    # This also works: "theme-base-0c layout-reverse", or just "layout-reverse".
+    theme = "theme-base-0b"
+
+    # Tagline to display under the author name in the sidebar, keep it short.
+    # You can use markdown here.
+    tagline = "Lets change world together!"
+
     # Metadata used to drive integrations.
+    googleAnalytics = "UA-48154141-1"
     gravatarHash = "4ad1cf8cf3515355e570a73a1cfca54e"
 
     # Social links
