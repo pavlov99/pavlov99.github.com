@@ -11,4 +11,4 @@ help:
 
 .PHONY: run
 run:
-	python -m SimpleHTTPServer
+	@hugo server --buildDrafts --watch --bind=0.0.0.0

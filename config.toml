@@ -1,0 +1,24 @@
+MetaDataFormat = "toml"
+baseurl = "http://kirillpavlov.com/"
+disqusShortname = "pavlov99"
+languageCode = "en-us"
+paginate = 10
+theme = "hyde-x"
+title = "Kirill Pavlov"
+
+[author]
+    name = "Kirill Pavlov"
+
+
+[params]
+    # Default page metadata, used when the specific page doesn't set its own.
+    defaultDescription = "Personal website, where my information is shared. It has posts about tech, data mining, software and stock trading."
+    defaultKeywords = "kirill pavlov,software,blog,cv,development,data mining,trading,analysis"
+
+    # Metadata used to drive integrations.
+    gravatarHash = "4ad1cf8cf3515355e570a73a1cfca54e"
+
+    # Social links
+    github = "https://github.com/pavlov99"
+    linkedin = "http://www.linkedin.com/profile/view?id=90442854"
+    twitter = "http://twitter.com/pavlov99"
