@@ -1,6 +1,6 @@
 +++
 date = "2015-08-09T16:20:37+08:00"
-draft = true
+draft = false
 title = "About Me"
 description = "About me, my tech experience, current projects and how to get in touch."
 keywords = ["kirill pavlov", "about", "website", "blog", "contact"]
