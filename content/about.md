@@ -9,7 +9,7 @@ menu = "main"
 +++
 
 Hi! My name is Kirill Pavlov, I'm data scientist and software engeneer.
-While I'm working on content update, check out my [CV](https://www.dropbox.com/s/sooehoz7glz226i/resume_en.pdf),
+While I'm working on content update, check out my [CV](/cv/cv-kirill-pavlov.pdf),
 [github resume](http://resume.github.io/?pavlov99) and [github report card](http://osrc.dfm.io/pavlov99).
 
 I am also doing project Euler tasks, you could track my progress here:
