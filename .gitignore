@@ -8,3 +8,9 @@ build/
 *.py[oc]
 bower_components
 node_modules
+
+static/cv/cv-kirill-pavlov.aux
+static/cv/cv-kirill-pavlov.dvi
+static/cv/cv-kirill-pavlov.log
+static/cv/cv-kirill-pavlov.out
+static/cv/cv-kirill-pavlov.ps
