@@ -1,9 +1,3 @@
-.PHONY: all
-all:
-	@npm install
-	@bower install
-
-
 .PHONY: help
 # target: help - Display callable targets
 help:
