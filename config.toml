@@ -1,6 +1,6 @@
 MetaDataFormat = "toml"
 baseurl = "http://kirillpavlov.com/"
-disqusShortname = "pavlov99"
+disqusShortname = "kirillpavlovcom"
 languageCode = "en-us"
 paginate = 10
 theme = "hyde-x"
