@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kirill Pavlov</title>
-    <link>http://kirillpavlov.com/</link>
-    <description>Recent content on Kirill Pavlov</description>
+    <title>Hugo on Kirill Pavlov</title>
+    <link>http://kirillpavlov.com/categories/hugo/</link>
+    <description>Recent content in Hugo on Kirill Pavlov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 22 Aug 2015 23:31:19 +0800</lastBuildDate>
-    <atom:link href="http://kirillpavlov.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://kirillpavlov.com/categories/hugo/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Static site generator for personal blog</title>
@@ -82,32 +82,6 @@ git subtree push --prefix&lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&g
 
 
 &lt;p&gt;I would like to recommend Hugo for anybody, who wants to build static pages.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>About Me</title>
-      <link>http://kirillpavlov.com/about/</link>
-      <pubDate>Sun, 09 Aug 2015 16:20:37 +0800</pubDate>
-      
-      <guid>http://kirillpavlov.com/about/</guid>
-      <description>
-
-&lt;p&gt;Hi! My name is Kirill Pavlov, I&amp;rsquo;m data scientist and software engeneer.
-While I&amp;rsquo;m working on content update, check out my &lt;a href=&#34;http://kirillpavlov.com/cv/cv-kirill-pavlov.pdf&#34;&gt;CV&lt;/a&gt;,
-&lt;a href=&#34;http://resume.github.io/?pavlov99&#34;&gt;github resume&lt;/a&gt; and &lt;a href=&#34;http://osrc.dfm.io/pavlov99&#34;&gt;github report card&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I am also doing project Euler tasks, you could track my progress here:
-&lt;img src=&#34;https://projecteuler.net/profile/pavlov99.png&#34; alt=&#34;Project Euler badge&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;my-name:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;My name&lt;/h2&gt;
-
-&lt;p&gt;My first name is &amp;ldquo;Kirill&amp;rdquo; and my last name is &amp;ldquo;Pavlov&amp;rdquo;.
-This name &lt;a href=&#34;https://en.wikipedia.org/wiki/Kirill&#34;&gt;came from Greek&lt;/a&gt;.
-One of the inventors of &lt;a href=&#34;https://en.wikipedia.org/wiki/Cyrillic_alphabets&#34;&gt;Cyrillic Alpabet&lt;/a&gt; is Saint Cyrill, out names are considered the same .&lt;/p&gt;
-
-&lt;p&gt;In English my name is pronounced as [k&amp;rsquo;iriɛl p&amp;rsquo;avlov].
-My Chinese name is 巴吉霖 (bā jí lín).&lt;/p&gt;
 </description>
     </item>
     

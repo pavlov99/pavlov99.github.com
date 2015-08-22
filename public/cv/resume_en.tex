@@ -1,0 +1,274 @@
+% resume.tex
+%
+% (c) 2002 Matthew Boedicker <mboedick@mboedick.org> (original author) http://mboedick.org
+% (c) 2003-2007 David J. Grant <davidgrant-at-gmail.com> http://www.davidgrant.ca
+%
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+
+\documentclass[letterpaper,11pt]{article}
+
+%-----------------------------------------------------------
+%Margin setup
+\usepackage[english]{babel}
+\usepackage[colorlinks, urlcolor=blue, unicode]{hyperref}
+\usepackage{url}
+\usepackage{graphics}
+\setlength{\voffset}{0.1in}
+\setlength{\paperwidth}{8.5in}
+\setlength{\paperheight}{11in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\textheight}{11in}
+\setlength{\textheight}{9.5in}
+\setlength{\topmargin}{-0.25in}
+\setlength{\textwidth}{7in}
+\setlength{\topskip}{0in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\evensidemargin}{-0.25in}
+%-----------------------------------------------------------
+%\usepackage{fullpage}
+\usepackage{shading}
+%\textheight=9.0in
+\pagestyle{empty}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+%-----------------------------------------------------------
+%Custom commands
+\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
+\newcommand{\resheading}[1]{{\large \parashade[.9]{sharpcorners}{\textbf{#1 \vphantom{p\^{E}}}}}}
+\newcommand{\ressubheading}[4]{
+\begin{tabular*}{6.5in}{l@{\extracolsep{\fill}}r}
+		\textbf{#1} & #2 \\
+		\textit{#3} & \textit{#4} \\
+\end{tabular*}\vspace{-6pt}}
+%-----------------------------------------------------------
+
+
+\begin{document}
+
+\parbox[b][2cm][t]{70mm}{
+\textbf{\Large Kirill Pavlov} \\
+Hong Kong \\
+% Date of birth: 24.08.1989 \\
+% Marital status: single \\
+E-mail: kirill.pavlov@phystech.edu \\
+\href{http://kirillpavlov.com}{kirillpavlov.com} \\
+}
+\hfill
+\parbox[b][4.3cm][t]{60mm}{
+\begin{flushright}
+	\includegraphics{ukvisa}
+\end{flushright}
+}
+
+\vspace{0.1in}
+
+\resheading{Education}
+\begin{itemize}
+%\item
+%	\ressubheading{Moscow Institute of Physics and Technology}{Moscow, Russia}{PhD degree, Department of Applied Mathematics and Management}{Sep. 2012 -- now}
+%	\begin{itemize}
+%		\resitem{Relevant courses: Machine learning, Data Mining, Statistics}
+%	\end{itemize}
+
+\item
+	\ressubheading{Moscow Institute of Physics and Technology (State University)}{Moscow, Russia}{Master degree, major in Applied Mathematics and Physics}{Sep. 2010 -- Jun. 2012}
+	\begin{itemize}
+		\resitem{Graduated with honours, Department of Applied Mathematics and Management}
+		\resitem{Relevant courses: Machine learning, Data Mining, Statistics}
+	\end{itemize}
+	
+%\item
+%	\ressubheading{Stanford university}{}{\href{http://ml-class.org}{Distance Machine learning classes}}{Oct. 2011 -- Dec. 2011}
+%	\begin{itemize}
+%		\resitem{GP: 880/880 (\href{http://kirillpavlov.com/static/2011mlclass.pdf}{diploma})}
+%	\end{itemize}
+	
+%\item
+%	\ressubheading{\href{http://shad.yandex.ru/}{Yandex school of data analysis}}{Moscow}{Master degree, Department of Data Analysis}{Sep. 2009 -- Jun. 2011}
+%	\begin{itemize}
+%		\resitem{Graduated with honours}
+%		\resitem{Diploma thesis: Credit scoring and risk estimation using multilevel logistic model}
+%	\end{itemize}
+
+\item
+	\ressubheading{Moscow Institute of Physics and Technology (State University)}{Moscow, Russia}{Diploma of higher education, major in Internet Data Analysis}{Jan. 2011 -- Jul. 2011}
+	\begin{itemize}
+		\resitem{Graduated with honours, Department of Data Analysis}
+		\resitem{Diploma thesis: Credit scoring and risk assessment by multilevel logistic regression}
+	\end{itemize}
+
+\item
+	\ressubheading{Moscow Institute of Physics and Technology (State University)}{Moscow, Russia}{Bachelor degree, major in Applied Mathematics and Physics}{Sep. 2006 -- Jun. 2010}
+	\begin{itemize}
+		\resitem{Graduated with honours, Department of Applied Mathematics and Management}
+%		\resitem{Diploma thesis: A Bayesian approach to the problem of selecting the optimal separating hyperplane parameters in case of unbalanced set}
+	\resitem{Diploma thesis: Bayesian approach for choosing the optimal separating hyperplane in the case of unbalanced set}
+		% \resitem{Relevant courses: Machine learning, Data Mining, Statistics}
+	\end{itemize}
+
+\end{itemize}
+\resheading{Work Experience}
+\begin{itemize}
+\item
+	\ressubheading{\href{http://www.valta.com}{Liricco Technologies Limited}}{Hong Kong, SAR China}{Software team lead}{Jun. 2015 -- now}
+	\begin{itemize}
+		\resitem{DevOps: I work on backend REST API server (Python3/Django, PostgreSQL, RabbitMQ, Redis) and client application (AngularJS, Gulp, Bower); responsible for architecture design.}
+	\end{itemize}
+	
+\item
+	\ressubheading{\href{http://www.multichannel.net/}{Multichannel (Hong Kong) Limited}}{Hong Kong, SAR China}{Development team lead, \small{internal transfer from Multichannel Research Ltd}.}{Aug. 2013 -- Mar. 2015}
+	\begin{itemize}
+		\resitem{Implemented advertisement budget forecasting system for one million campaigns, Innovation and Technology Commission Programme E/P021/13}
+		\resitem{Integrated API of two billing systems: CheddarGetter and Cleverbridge, payment gateway: Paydollar and openexchangerates.org}
+	\end{itemize}
+	
+\item
+	\ressubheading{\href{http://www.multichannel.net/}{Multichannel Research Limited}}{Hong Kong, SAR China}{Development team lead}{Jul. 2012 -- Jul. 2013}
+	\begin{itemize}
+		\resitem{Lead team of developers, design product architecture, apply for patents, report results}
+		\resitem{Write backend of web application (Django, PostgreSQL, RabbitMQ, Redis, MongoDB), frontend (AngularJS) and algorithms for advertising campaigns management (forecasting, experiment design, optimization)}
+		\resitem{Integrated thorough API five advertisement channels, Salesforce, Zendesk}
+		%\resitem{Developed two open-source libraries: \href{https://github.com/pavlov99/json-rpc}{json-rpc}, \href{https://github.com/pavlov99/mouse}{mouse}} 
+	\end{itemize}
+	
+%\item
+%	\ressubheading{\href{http://topdoc.hk/}{TopDoc}}{Hong Kong, SAR China}{Development Adviser}{Sep. 2014 -- Jan. 2015}
+%	\begin{itemize}
+%		\resitem{Reviewed and improved the system, Created internal API, Set up deployment}
+%		\resitem{Integrated Google calendar, PayPal advanced payments and billing system}
+%	\end{itemize}
+
+\item
+	\ressubheading{\href{http://yandex.com/}{Yandex}}{Moscow, Russia}{Developer in Advertising Network Department}{Jan. 2011 -- Mar. 2012}
+	\begin{itemize}
+		\resitem{Developed algorithms for contextual targeting and advertising ranking}
+		\resitem{Forecast click-though rate and created mathematical models to select the banner for the site. Implemented algorithms using mapreduce, python, bash and awk}
+		%\resitem{Created and installed of .deb packages}
+	\end{itemize}
+
+%\item
+%	\ressubheading{\href{http://iitp.ru}{The Institute for Information Transmission Problems}}{Moscow}{Trainee researcher}{Sep. 2010 -- Jul. 2011}
+%	\begin{itemize}
+%		\resitem{Implemented optimization algorithms (bfgs, dfp, broyden) to calculate the aircraft wing profile}
+%		\resitem{Increased the speed of the current gradient descent methods}
+%	\end{itemize}
+	
+
+\item
+	\ressubheading{\href{http://yandex.com/}{Yandex}}{Moscow, Russia}{Developer in Special Projects Department}{Feb. 2010 -- Dec. 2010}
+	\begin{itemize}
+		\resitem{Developed server-side event portals using Python/Django and MySQL:
+	
+	    \href{http://hockey2010.yandex.ru}{hockey2010.yandex.ru},
+	    \href{http://football2010.yandex.ru}{football2010.yandex.ru},
+	    \href{http://aziada2011.yandex.ru}{aziada2011.yandex.ru}}
+		\resitem{In charge of event project's teasers creation and display on the Yandex home page}
+	\end{itemize}
+	
+%\item
+%	\ressubheading{\href{http://lksh.ru/}{Summer computer school}}{Sudislavl, Russia}{Teacher of machine learning and industrial programming}{Jul. 2010, Jul. 2011}
+%	\begin{itemize}
+%		\resitem{Made 6 machine learning lectures and practical classes for schoolchilds --- winners of olympiads in informatics}
+%		\resitem{Organized development process to create console application for olympiad contest generation \url{http://code.google.com/p/please}, taught schoolchilds to work in team, write reliable code using tests, work with control version systems}
+%	\end{itemize}
+	
+%\item
+%	\ressubheading{\href{http://www.ozmoving.com/}{Oz Moving Company}}{New York City}{Mover}{Jun. 2008 -- Sep. 2008}
+%	\begin{itemize}
+%		\resitem{Transportation of property}
+%	\end{itemize}
+\end{itemize}
+
+
+\resheading{Awards}
+\begin{tabular*}{6.5in}{l@{\extracolsep{\fill}}r}
+    Red Herring Global Top 100 with Multichannel Hong Kong Limited & 2013 \\
+    Diploma of the MIPT conference winner & 26 Nov. 2011\\
+    Scholarship of Abramov-Frolov's fund. (2 000 US\$) & 2007 -- 2009\\
+    III Diploma at all-Russian school mathematics Olympiad (regional step, Yaroslavl) & 2005\\
+\end{tabular*}
+
+\resheading{Personal Projects}
+\begin{tabular*}{6.5in}{l}
+	\href{https://168.estate}{168 Estate} -- Hong Kong property search service. Crawling system and search engine under the hood. \\
+	Open source github (\href{https://github.com/pavlov99}{@pavlov99}) projects with total 50 stars.
+\end{tabular*}
+
+
+%\resheading{Participation in Schools and Conferences}
+%\begin{itemize}
+%\item
+%	\ressubheading{\href{http://conf55.mipt.ru/static/prog_pub.pdf}{Conference MIPT-55}}{Dolgoprudny, Russia}{}{19 Nov. 2012 -- 25 Nov. 2012}
+%	\begin{itemize}
+%		\resitem{Made a presentations ``Feature generation method in the protein classification problem" and ``Logistic regression mixture creation using iteratively reweighted least squares approach''}
+%	\end{itemize}
+%
+%\item
+%	\ressubheading{\href{http://mipt.ru/nauka/54conf/}{Conference MIPT-54}}{Dolgoprudny, Russia}{}{25 Nov. 2011 -- 26 Nov. 2011}
+%	\begin{itemize}
+%		\resitem{Made a presentation ``Algorithm of multilevel models selection in the logistic regression reconstruction problem"}
+%	\end{itemize}
+%
+%%\item
+%%	\ressubheading{\href{http://www.google.com/events/developerday/2011/}{Google developer day 2011}}{Moscow}{Participant}{8 Nov. 2011}
+%%
+%%\item
+%%	\ressubheading{\href{http://yac2011.yandex.com/}{Yet another conference 2011}}{Moscow}{Participant}{19 Sep. 2011}
+%	
+%\item
+%	\ressubheading{\href{http://mmro.ru/}{MMPR 2011}}{Petrozavodsk, Russia}{Conference mathematical methods of pattern recognition-15}{12 Sep. 2011 -- 17 Sep. 2011}
+%	\begin{itemize}
+%		\resitem{Made a presentation ``The choice of multilevel models in the problem of bank credit scoring" %\href{http://narod.ru/disk/31183159001/pavlov.pdf.html}{pdf}(ru), \href{http://narod.ru/disk/31183157001/mmro-pavlov-presentation.pdf.html}{presentation}(ru)
+%		}
+%	\end{itemize}
+%	
+%%\item
+%%	\ressubheading{\href{http://yac2011.yandex.com/archive2010/}{Yet another conference 2010}}{Moscow}{Participant}{1 Oct. 2010}
+%%	
+%%\item
+%%	\ressubheading{\href{http://romip.ru/russir2010/eng/}{RuSSIR 2010}}{Voronezh}{Participant of Russian Summer School in Information Retrieval}{13 Sep. 2010 -- 18 Sep. 2010}
+%%
+%%\item
+%%	\ressubheading{\href{http://logic.pdmi.ras.ru/midas/en}{MiDAS 2010}}{Saint-Petersbourg}{
+%%	Participant of Microsoft Data structure and Algorithms School
+%%	}{8 Aug. 2010 -- 14 Aug. 2010}	
+%
+%\end{itemize}
+
+
+\resheading{Additional Skills and Interests}
+
+\begin{description}
+\item[Personal:] Responsible, Resolute, Able to make decisions quickly, Purposeful
+\item[Spoken languages:] Russian (native), English (upper intermediate), Chinese (beginner)
+% \item[Programming languages:] Python + Django, numpy, scipy, Matlab/GNU Octave/Scilab, C/C++, bash, basics of JavaScript (jQuery, can.js) and css (twitter bootstrap)
+% \item[Control version systems:] Svn, git
+% \item[Databases:] MySQL, sqlite, bsddb
+% \item[Document markup languages:] \LaTeX + packages Ti$k$Z, beamer, graphviz, html, basics of css3
+% \item[Operating Systems:] Linux (Debian, Ubuntu), Windows
+% \item[Known design standards:] CRISP-DM, IDEF0
+%\item[Military:] In 2011 took place in Yaroslavl military training in the specialty 530200 --- Mathematical, software and information support of automated control systems. I was a squad commander, deputy commander of the platoon. During training led a group of military students to develop software for radar station's frequencies calculation in a given area. As a result of the work was marked by letter of thanks from the Chief of Department, Air Force Colonel.
+\end{description}
+
+% \resheading{Interests}
+\begin{description}
+% \item[Science:] Classification, Multilevel models, Regression, Optimization, Statistics
+\item[Courcera Certifications:] Computer Science 101, Functional Programming Principles in Scala, Computing for Data Analysis, Neural Networks for Machine Learning
+\item[Sport:] Orienteering, Long distance running, prepare to IronMan triathlon
+%\item[Computers and programming:]  Currently maintain machine learning library pmll \url{https://github.com/pavlov99/pmll}
+% \item[Music:] Playing guitar
+% \item[Architecture:] SANAA, Norman Foster, Othmar Ammann
+\end{description}
+
+% Footer
+\begin{center}
+  \begin{small}
+    Referee details available upon request; \hspace{5 mm}
+    Last updated: \today
+  \end{small}
+\end{center}
+
+\end{document}
