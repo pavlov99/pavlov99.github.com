@@ -20,7 +20,7 @@ I am also doing project Euler tasks, you could track my progress here:
 
 My first name is "Kirill" and my last name is "Pavlov".
 This name [came from Greek](https://en.wikipedia.org/wiki/Kirill).
-One of the inventors of [Cyrillic Alpabet](https://en.wikipedia.org/wiki/Cyrillic_alphabets) is Saint Cyrill, out names are considered the same .
+One of the inventors of [Cyrillic Alpabet](https://en.wikipedia.org/wiki/Cyrillic_alphabets) is Saint Cyrill, our names are considered the same .
 
 In English my name is pronounced as [k'iriɛl p'avlov].
 My Chinese name is 巴吉霖 (bā jí lín).
