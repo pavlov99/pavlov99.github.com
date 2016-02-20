@@ -23,6 +23,10 @@ title = "Kirill Pavlov"
     # This also works: "theme-base-0c layout-reverse", or just "layout-reverse".
     theme = "theme-base-0b"
 
+    # Select a syntax highight.
+    # Check the static/css/highlight directory for options.
+    highlight = "default"
+
     # Tagline to display under the author name in the sidebar, keep it short.
     # You can use markdown here.
     tagline = "Lets change world together!"
@@ -33,5 +37,5 @@ title = "Kirill Pavlov"
 
     # Social links
     github = "https://github.com/pavlov99"
-    linkedin = "http://www.linkedin.com/profile/view?id=90442854"
+    linkedin = "https://www.linkedin.com/in/pavlov99"
     twitter = "http://twitter.com/pavlov99"
