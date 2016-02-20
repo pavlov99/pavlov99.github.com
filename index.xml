@@ -6,8 +6,120 @@
     <description>Recent content on Kirill Pavlov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 22 Aug 2015 23:31:19 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 27 Aug 2015 06:18:14 +0000</lastBuildDate>
     <atom:link href="http://kirillpavlov.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Get random lines from file with bash</title>
+      <link>http://kirillpavlov.com/blog/2015/08/27/get-random-lines-from-file-with-bash/</link>
+      <pubDate>Thu, 27 Aug 2015 06:18:14 +0000</pubDate>
+      
+      <guid>http://kirillpavlov.com/blog/2015/08/27/get-random-lines-from-file-with-bash/</guid>
+      <description>
+
+&lt;p&gt;Data sampling is one of the duties of data scientists and data engineers.
+One may require to split original data into train and test subsets.
+How could we do it fast with less amount of code?
+This article shows usage of different command line tools for such task.&lt;/p&gt;
+
+&lt;p&gt;There are several ways to get random lines from a file:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sort lines with random key&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;shuf&lt;/code&gt; from GNU core utils&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rl&lt;/code&gt; randomize-lines package&lt;/li&gt;
+&lt;li&gt;perl one-liner&lt;/li&gt;
+&lt;li&gt;python one-liner&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All of the approaches would be compared in terms of execution time, tools availability and code complexity. File to be sorted consists of 10M lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;FILENAME=&amp;quot;/tmp/random-lines.$$.tmp&amp;quot;
+NUMLINES=10000000
+seq -f &#39;line %.0f&#39; $NUMLINES &amp;gt; $FILENAME;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;sort:7f16ea4a76eb101e46f16364e2326e6b&#34;&gt;sort&lt;/h2&gt;
+
+&lt;p&gt;Default &lt;code&gt;sort&lt;/code&gt; has option &lt;code&gt;-R&lt;/code&gt;, &lt;code&gt;--random-sort&lt;/code&gt; which sorts lines by random hash. However, if there are two lines with the same content, their hashes would be the same and they would be sorted one after another. To prevent such case, one may possible to make all of the lines unique via adding line number to all of them.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nl -ba $FILENAME | sort -R | sed &#39;s/.*[0-9]\t//&#39; | head
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Time: 3 min 09.77 sec&lt;/p&gt;
+
+&lt;p&gt;Complexity: medium, need to keep in mind making lines unique&lt;/p&gt;
+
+&lt;p&gt;Availability: good&lt;/p&gt;
+
+&lt;h2 id=&#34;shuf:7f16ea4a76eb101e46f16364e2326e6b&#34;&gt;shuf&lt;/h2&gt;
+
+&lt;p&gt;Another bash tool &lt;code&gt;shuf&lt;/code&gt; on the other hand will sufficiently randomize a list, including not putting duplicate lines next to each other. Another advantage of this tool is it&amp;rsquo;s availability. Being part of GNU core utils it is available on nearly every machine.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;shuf $FILENAME | head
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It has parameter &lt;code&gt;-n&lt;/code&gt; to specify number of lines to output, however based on my tests, it does not speed up the process. Combination with &lt;code&gt;head&lt;/code&gt; works better.&lt;/p&gt;
+
+&lt;p&gt;Time: 0.14 sec&lt;/p&gt;
+
+&lt;p&gt;Complexity: easy&lt;/p&gt;
+
+&lt;p&gt;Availability: good&lt;/p&gt;
+
+&lt;h2 id=&#34;randomized-lines:7f16ea4a76eb101e46f16364e2326e6b&#34;&gt;randomized-lines&lt;/h2&gt;
+
+&lt;p&gt;Tool &lt;code&gt;rl&lt;/code&gt; from &lt;a href=&#34;http://manpages.ubuntu.com/manpages/wily/en/man1/rl.1.html&#34;&gt;randomize-lines&lt;/a&gt; package makes random sampling easy, however, not every machine has it. As mentioned in it&amp;rsquo;s description: &amp;ldquo;It does this with only a single pass over the input while trying to use as little memory as possible&amp;rdquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rl $FILENAME | head
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Time: 0.68 sec&lt;/p&gt;
+
+&lt;p&gt;Complexity: easy&lt;/p&gt;
+
+&lt;p&gt;Availability: bad, need to install from external repository&lt;/p&gt;
+
+&lt;h2 id=&#34;perl:7f16ea4a76eb101e46f16364e2326e6b&#34;&gt;perl&lt;/h2&gt;
+
+&lt;p&gt;Perl is a good language for text processing. For those developers, who are less familiar with bash, it might be native to try it first.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cat $FILENAME | perl -MList::Util=shuffle -e &#39;print shuffle(&amp;lt;STDIN&amp;gt;);&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Time: 2.11 sec&lt;/p&gt;
+
+&lt;p&gt;Availability: medium, some of the machines might not have it&lt;/p&gt;
+
+&lt;p&gt;Complexity: medium, need to remember how to call perl from bash and include libraries&lt;/p&gt;
+
+&lt;h2 id=&#34;python:7f16ea4a76eb101e46f16364e2326e6b&#34;&gt;python&lt;/h2&gt;
+
+&lt;p&gt;Python is among most popular programming languages. Nowadays it exists on nearly every machine and a lot of developers worked with it at least once. It has library to work with random numbers and shuffles. As well as perl, it could be invoked from bash.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;python -c &amp;quot;import random, sys; lines = open(sys.argv[1]).readlines(); random.shuffle(lines); print &#39;&#39;.join(lines),&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Script execution is inefficient, it requires to store data in memory.&lt;/p&gt;
+
+&lt;p&gt;Time: 6.92 sec&lt;/p&gt;
+
+&lt;p&gt;Availability: medium, some of the machines might not have it&lt;/p&gt;
+
+&lt;p&gt;Complexity: medium, need to remember how to call perl from bash and include libraries&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion:7f16ea4a76eb101e46f16364e2326e6b&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;To sample random lines from command line, default &lt;code&gt;shuf&lt;/code&gt; from core utils is probably the best choice. It is very easy to use and outperforms others in term of execution time.
+However, everything depends on a task. For machine learning problems sampling is not a bottleneck and might not require fastest execution.&lt;/p&gt;
+
+&lt;h2 id=&#34;appendix:7f16ea4a76eb101e46f16364e2326e6b&#34;&gt;Appendix&lt;/h2&gt;
+
+&lt;p&gt;Gist with benchmark file:
+&lt;script src=&#34;//gist.github.com/34836af4fa1d6c2a0dfa.js&#34;&gt;&lt;/script&gt;
+&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Static site generator for personal blog</title>
