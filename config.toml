@@ -29,7 +29,7 @@ title = "Kirill Pavlov"
 
     # Tagline to display under the author name in the sidebar, keep it short.
     # You can use markdown here.
-    tagline = "Lets change world together!"
+    tagline = "Let's change the world together!"
 
     # Metadata used to drive integrations.
     googleAnalytics = "UA-48154141-1"
