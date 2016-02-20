@@ -4,11 +4,16 @@ help:
 	@egrep "^# target:" [Mm]akefile | sed -e 's/^# target: //g'
 
 .PHONY: run
-run:
+run: clean
 	@hugo server --buildDrafts --watch --bind=0.0.0.0
 
+
+.PHONY: clean
+clean:
+	@rm -rf public
+
 .PHONY: deploy
-deploy:
+deploy: clean
 	@echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 	@git checkout develop
 	@hugo
