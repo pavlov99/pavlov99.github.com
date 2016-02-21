@@ -6,8 +6,34 @@
     <description>Recent content in Golang on Kirill Pavlov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 22 Aug 2015 23:31:19 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 20 Feb 2016 23:06:18 +0800</lastBuildDate>
     <atom:link href="http://kirillpavlov.com/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Go versions, how to make updates easier</title>
+      <link>http://kirillpavlov.com/blog/2016/02/20/go-versions-how-to-make-updates-easier/</link>
+      <pubDate>Sat, 20 Feb 2016 23:06:18 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/blog/2016/02/20/go-versions-how-to-make-updates-easier/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; is an open source programming language that makes it easy to build simple, reliable, and efficient software.&lt;/p&gt;
+
+&lt;p&gt;Because of its rapid development, there is an issue with version updates.
+It requires not only download and compile new version, but also update &lt;code&gt;$GOROOT&lt;/code&gt; and &lt;code&gt;$GOPATH&lt;/code&gt; environment variables.&lt;/p&gt;
+
+&lt;p&gt;One way to simplify this process is to use version manager, such as &lt;a href=&#34;https://github.com/moovweb/gvm&#34;&gt;gvm&lt;/a&gt;.
+Installations process is super easy:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bash &amp;lt; &amp;lt;(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To install proper version of Go use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gvm install go1.6
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As simple as that.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Static site generator for personal blog</title>

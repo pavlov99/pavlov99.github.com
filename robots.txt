@@ -1,1 +1,3 @@
-User-agent: *
+﻿User-Agent: *
+Disallow:
+Host: pavlov99.github.io

@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="http://kirillpavlov.com/css/poole-overrides.css">
   <link rel="stylesheet" href="http://kirillpavlov.com/css/hyde-overrides.css">
   <link rel="stylesheet" href="http://kirillpavlov.com/css/hyde-x.css">
-  <link rel="stylesheet" href="http://kirillpavlov.com/css/highlight/default.css">
+  <link rel="stylesheet" href="http://kirillpavlov.com/css/highlight/zenburn.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -94,7 +94,7 @@ This article shows usage of different command line tools for such task.</p>
 
 <p>All of the approaches would be compared in terms of execution time, tools availability and code complexity. File to be sorted consists of 10M lines:</p>
 
-<pre><code>FILENAME=&quot;/tmp/random-lines.$$.tmp&quot;
+<pre><code class="language-bash">FILENAME=&quot;/tmp/random-lines.$$.tmp&quot;
 NUMLINES=10000000
 seq -f 'line %.0f' $NUMLINES &gt; $FILENAME;
 </code></pre>
@@ -103,7 +103,7 @@ seq -f 'line %.0f' $NUMLINES &gt; $FILENAME;
 
 <p>Default <code>sort</code> has option <code>-R</code>, <code>--random-sort</code> which sorts lines by random hash. However, if there are two lines with the same content, their hashes would be the same and they would be sorted one after another. To prevent such case, one may possible to make all of the lines unique via adding line number to all of them.</p>
 
-<pre><code>nl -ba $FILENAME | sort -R | sed 's/.*[0-9]\t//' | head
+<pre><code class="language-bash">nl -ba $FILENAME | sort -R | sed 's/.*[0-9]\t//' | head
 </code></pre>
 
 <p>Time: 3 min 09.77 sec</p>
@@ -116,7 +116,7 @@ seq -f 'line %.0f' $NUMLINES &gt; $FILENAME;
 
 <p>Another bash tool <code>shuf</code> on the other hand will sufficiently randomize a list, including not putting duplicate lines next to each other. Another advantage of this tool is it&rsquo;s availability. Being part of GNU core utils it is available on nearly every machine.</p>
 
-<pre><code>shuf $FILENAME | head
+<pre><code class="language-bash">shuf $FILENAME | head
 </code></pre>
 
 <p>It has parameter <code>-n</code> to specify number of lines to output, however based on my tests, it does not speed up the process. Combination with <code>head</code> works better.</p>
@@ -131,7 +131,7 @@ seq -f 'line %.0f' $NUMLINES &gt; $FILENAME;
 
 <p>Tool <code>rl</code> from <a href="http://manpages.ubuntu.com/manpages/wily/en/man1/rl.1.html">randomize-lines</a> package makes random sampling easy, however, not every machine has it. As mentioned in it&rsquo;s description: &ldquo;It does this with only a single pass over the input while trying to use as little memory as possible&rdquo;.</p>
 
-<pre><code>rl $FILENAME | head
+<pre><code class="language-bash">rl $FILENAME | head
 </code></pre>
 
 <p>Time: 0.68 sec</p>
@@ -144,7 +144,7 @@ seq -f 'line %.0f' $NUMLINES &gt; $FILENAME;
 
 <p>Perl is a good language for text processing. For those developers, who are less familiar with bash, it might be native to try it first.</p>
 
-<pre><code>cat $FILENAME | perl -MList::Util=shuffle -e 'print shuffle(&lt;STDIN&gt;);'
+<pre><code class="language-bash">cat $FILENAME | perl -MList::Util=shuffle -e 'print shuffle(&lt;STDIN&gt;);'
 </code></pre>
 
 <p>Time: 2.11 sec</p>
@@ -157,7 +157,7 @@ seq -f 'line %.0f' $NUMLINES &gt; $FILENAME;
 
 <p>Python is among most popular programming languages. Nowadays it exists on nearly every machine and a lot of developers worked with it at least once. It has library to work with random numbers and shuffles. As well as perl, it could be invoked from bash.</p>
 
-<pre><code>python -c &quot;import random, sys; lines = open(sys.argv[1]).readlines(); random.shuffle(lines); print ''.join(lines),&quot;
+<pre><code class="language-bash">python -c &quot;import random, sys; lines = open(sys.argv[1]).readlines(); random.shuffle(lines); print ''.join(lines),&quot; $FILENAME
 </code></pre>
 
 <p>Script execution is inefficient, it requires to store data in memory.</p>
