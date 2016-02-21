@@ -21,16 +21,20 @@ There are several ways to get random lines from a file:
 
 All of the approaches would be compared in terms of execution time, tools availability and code complexity. File to be sorted consists of 10M lines:
 
-    FILENAME="/tmp/random-lines.$$.tmp"
-    NUMLINES=10000000
-    seq -f 'line %.0f' $NUMLINES > $FILENAME;
+```bash
+FILENAME="/tmp/random-lines.$$.tmp"
+NUMLINES=10000000
+seq -f 'line %.0f' $NUMLINES > $FILENAME;
+```
 
 sort
 ----
 
 Default `sort` has option `-R`, `--random-sort` which sorts lines by random hash. However, if there are two lines with the same content, their hashes would be the same and they would be sorted one after another. To prevent such case, one may possible to make all of the lines unique via adding line number to all of them.
 
-    nl -ba $FILENAME | sort -R | sed 's/.*[0-9]\t//' | head
+```bash
+nl -ba $FILENAME | sort -R | sed 's/.*[0-9]\t//' | head
+```
 
 Time: 3 min 09.77 sec
 
@@ -43,7 +47,9 @@ shuf
 
 Another bash tool `shuf` on the other hand will sufficiently randomize a list, including not putting duplicate lines next to each other. Another advantage of this tool is it's availability. Being part of GNU core utils it is available on nearly every machine.
 
-    shuf $FILENAME | head
+```bash
+shuf $FILENAME | head
+```
 
 It has parameter `-n` to specify number of lines to output, however based on my tests, it does not speed up the process. Combination with `head` works better.
 
@@ -58,7 +64,9 @@ randomized-lines
 
 Tool `rl` from [randomize-lines](http://manpages.ubuntu.com/manpages/wily/en/man1/rl.1.html) package makes random sampling easy, however, not every machine has it. As mentioned in it's description: "It does this with only a single pass over the input while trying to use as little memory as possible".
 
-    rl $FILENAME | head
+```bash
+rl $FILENAME | head
+```
 
 Time: 0.68 sec
 
@@ -72,7 +80,9 @@ perl
 
 Perl is a good language for text processing. For those developers, who are less familiar with bash, it might be native to try it first.
 
-    cat $FILENAME | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);'
+```bash
+cat $FILENAME | perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);'
+```
 
 Time: 2.11 sec
 
@@ -86,7 +96,9 @@ python
 
 Python is among most popular programming languages. Nowadays it exists on nearly every machine and a lot of developers worked with it at least once. It has library to work with random numbers and shuffles. As well as perl, it could be invoked from bash.
 
-    python -c "import random, sys; lines = open(sys.argv[1]).readlines(); random.shuffle(lines); print ''.join(lines),"
+```bash
+python -c "import random, sys; lines = open(sys.argv[1]).readlines(); random.shuffle(lines); print ''.join(lines)," $FILENAME
+```
 
 Script execution is inefficient, it requires to store data in memory.
 

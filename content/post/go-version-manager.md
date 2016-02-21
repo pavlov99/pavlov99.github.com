@@ -1,9 +1,9 @@
 +++
-categories = []
 date = "2016-02-20T23:06:18+08:00"
 description = "This article shows advantages of using version manager for Go – gvm."
 keywords = ["go","version management"]
 title = "Go versions, how to make updates easier"
+categories = ["golang"]
 
 +++
 
@@ -15,10 +15,14 @@ It requires not only download and compile new version, but also update `$GOROOT`
 One way to simplify this process is to use version manager, such as [gvm](https://github.com/moovweb/gvm).
 Installations process is super easy:
 
-    bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+```bash
+bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+```
 
 To install proper version of Go use:
 
-    gvm install go1.6
+```bash
+gvm install go1.6
+```
 
 As simple as that.
