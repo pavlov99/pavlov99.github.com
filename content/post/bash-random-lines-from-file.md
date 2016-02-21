@@ -106,7 +106,7 @@ Time: 6.92 sec
 
 Availability: medium, some of the machines might not have it
 
-Complexity: medium, need to remember how to call perl from bash and include libraries
+Complexity: medium, need to remember how to call python from bash and include libraries
 
 Conclusion
 ----------

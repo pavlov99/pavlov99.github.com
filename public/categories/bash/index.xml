@@ -106,7 +106,7 @@ seq -f &#39;line %.0f&#39; $NUMLINES &amp;gt; $FILENAME;
 
 &lt;p&gt;Availability: medium, some of the machines might not have it&lt;/p&gt;
 
-&lt;p&gt;Complexity: medium, need to remember how to call perl from bash and include libraries&lt;/p&gt;
+&lt;p&gt;Complexity: medium, need to remember how to call python from bash and include libraries&lt;/p&gt;
 
 &lt;h2 id=&#34;conclusion:7f16ea4a76eb101e46f16364e2326e6b&#34;&gt;Conclusion&lt;/h2&gt;
 
