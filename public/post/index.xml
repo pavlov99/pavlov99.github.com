@@ -6,8 +6,170 @@
     <description>Recent content in Posts on Kirill Pavlov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Feb 2016 23:06:18 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 21 Feb 2016 00:20:45 +0800</lastBuildDate>
     <atom:link href="http://kirillpavlov.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Top 5 features released in spark 1.6</title>
+      <link>http://kirillpavlov.com/blog/2016/02/21/top-5-features-released-in-spark-1.6/</link>
+      <pubDate>Sun, 21 Feb 2016 00:20:45 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/blog/2016/02/21/top-5-features-released-in-spark-1.6/</guid>
+      <description>
+
+&lt;p&gt;Spark version 1.6 &lt;a href=&#34;https://spark.apache.org/releases/spark-release-1-6-0.html&#34;&gt;has been released&lt;/a&gt; on January 4th, 2016.
+Compared to the previous version, it has significant improvements. This article covers top 5 of them.&lt;/p&gt;
+
+&lt;h3 id=&#34;1-partition-by-column:8ab4cd76c2e48d03608ec5aca1374ea6&#34;&gt;1. Partition by column&lt;/h3&gt;
+
+&lt;p&gt;The idea is to have more control on RDD&amp;rsquo;s partitioning.
+Sometimes data needs to be joined and grouped by certain key, such as user_id.
+To minify data reshuffling, one may possible to store chunks of objects with the same key within the same data node.&lt;/p&gt;
+
+&lt;p&gt;This feature &lt;a href=&#34;https://cwiki.apache.org/confluence/display/Hive/LanguageManual+SortBy#LanguageManualSortBy-SyntaxofClusterByandDistributeBy&#34;&gt;exists in Hive&lt;/a&gt; and has been &lt;a href=&#34;https://issues.apache.org/jira/browse/SPARK-11410&#34;&gt;ported to spark&lt;/a&gt;.
+Example of usage:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val df = sc.parallelize(Array(
+    (&amp;quot;A&amp;quot;, 1), (&amp;quot;B&amp;quot;, 2), (&amp;quot;C&amp;quot;, 3), (&amp;quot;A&amp;quot;, 4)
+)).toDF(&amp;quot;key&amp;quot;, &amp;quot;value&amp;quot;)
+val partitioned = df.repartition($&amp;quot;key&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-groupeddata-pivot:8ab4cd76c2e48d03608ec5aca1374ea6&#34;&gt;2. GroupedData Pivot&lt;/h3&gt;
+
+&lt;p&gt;This feature is about data presentation: if we need to transform adjacency list to adjacency matrix or convert long narrow RDD to the matrix - pivot is our friend.
+Python has pivot functionality in Pandas DataFrames: &lt;a href=&#34;http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.unstack.html#pandas.DataFrame.unstack&#34;&gt;unstack&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val df = sc.parallelize(Array(
+    (&amp;quot;one&amp;quot;, &amp;quot;A&amp;quot;, 1), (&amp;quot;one&amp;quot;, &amp;quot;B&amp;quot;, 2), (&amp;quot;two&amp;quot;, &amp;quot;A&amp;quot;, 3), (&amp;quot;two&amp;quot;, &amp;quot;B&amp;quot;, 4)
+)).toDF(&amp;quot;key1&amp;quot;, &amp;quot;key2&amp;quot;, &amp;quot;value&amp;quot;)
+df.show()
+
++----+----+-----+
+|key1|key2|value|
++----+----+-----+
+| one|   A|    1|
+| one|   B|    2|
+| two|   A|    3|
+| two|   B|    4|
++----+----+-----+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.GroupedData&#34;&gt;GroupedData.pivot&lt;/a&gt; allows making values from columns &lt;em&gt;key1&lt;/em&gt; or &lt;em&gt;key2&lt;/em&gt; new columns.
+For example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;df.groupBy(&amp;quot;key1&amp;quot;).pivot(&amp;quot;key2&amp;quot;).sum(&amp;quot;value&amp;quot;).show()
+
++----+-+-+
+|key1|A|B|
++----+-+-+
+| one|1|2|
+| two|3|4|
++----+-+-+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Usually, data to be pivoted is not big and to avoid reshuffling, it makes sense to use &lt;code&gt;coalesce&lt;/code&gt; first.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;// Better to combine data within one data node before pivot
+val groupedData = df.groupBy(&amp;quot;key1&amp;quot;).coalesce(1).cache()
+groupedData.pivot(&amp;quot;key2&amp;quot;).sum(&amp;quot;value&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;3-standard-deviation-calculation:8ab4cd76c2e48d03608ec5aca1374ea6&#34;&gt;3. Standard deviation calculation&lt;/h3&gt;
+
+&lt;p&gt;Spark is not yet mature in terms of statistics calculation. For example, it does not allow to &lt;a href=&#34;https://stackoverflow.com/questions/28158729/how-can-i-calculate-exact-median-with-apache-spark#answer-28160731&#34;&gt;calculate the median&lt;/a&gt; value of the column. One of the reasons is that linear algorithm could not be generalized to distributed RDD.&lt;/p&gt;
+
+&lt;p&gt;Simple standard deviation was introduced only in spark 1.6.
+A Potential problem with custom calculation could be with type overflow.
+Example of usage:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;df.agg(stddev(&amp;quot;value&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;4-simplified-outer-join:8ab4cd76c2e48d03608ec5aca1374ea6&#34;&gt;4. Simplified outer join&lt;/h3&gt;
+
+&lt;p&gt;Join operation is essential for data manipulation and filtering in both RDBMS and distributed systems.
+There are different types of joins, such as inner, left outer, right outer, semi, etc.
+While inner join of data was relatively easy in earlier versions of spark, all of the other types required to specify join expression.
+There are even more difficulties if join uses two or more columns.&lt;/p&gt;
+
+&lt;p&gt;Join expressions are not that easy because they require additional DataFrame manipulations, such as column rename and further drop.
+If the column has the same name in both data frames, it would not be dropped automatically and cause problems with future select.&lt;/p&gt;
+
+&lt;p&gt;Suppose we have another DataFrame&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val df2 = sc.parallelize(Array(
+    (&amp;quot;one&amp;quot;, &amp;quot;A&amp;quot;, 5), (&amp;quot;two&amp;quot;, &amp;quot;A&amp;quot;, 6)
+)).toDF(&amp;quot;key1&amp;quot;, &amp;quot;key2&amp;quot;, &amp;quot;value2&amp;quot;)
+df2.show()
+
++----+----+------+
+|key1|key2|value2|
++----+----+------+
+| one|   A|     5|
+| two|   A|     6|
++----+----+------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Outer join prior to 1.6 could only be done using join expression:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val joined = df.join(df2, df(&amp;quot;key1&amp;quot;) === df2(&amp;quot;key1&amp;quot;) &amp;amp;&amp;amp; df(&amp;quot;key2&amp;quot;) === df2(&amp;quot;key2&amp;quot;), &amp;quot;left_outer&amp;quot;)
+joined.show()
+
++----+----+-----+----+----+------+
+|key1|key2|value|key1|key2|value2|
++----+----+-----+----+----+------+
+| two|   A|    3| two|   A|     6|
+| two|   B|    4|null|null|  null|
+| one|   A|    1| one|   A|     5|
+| one|   B|    2|null|null|  null|
++----+----+-----+----+----+------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Result data frame has duplicated column names, any operations with them would throw an error&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;joined.select(&amp;quot;key2&amp;quot;)
+
+org.apache.spark.sql.AnalysisException: Reference &#39;key2&#39; is ambiguous, could be: key2#28, key2#34.;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To avoid duplication, one possible to rename columns before and drop them after the join.
+The code in this case becomes messy and requires explanation.
+Spark 1.6 simplifies &lt;a href=&#34;https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame&#34;&gt;join&lt;/a&gt; and allows to write&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;df.join(df2, Seq(&amp;quot;key1&amp;quot;, &amp;quot;key2&amp;quot;), &amp;quot;left_outer&amp;quot;).show()
+
++----+----+-----+------+
+|key1|key2|value|value2|
++----+----+-----+------+
+| two|   A|    3|     6|
+| two|   B|    4|  null|
+| one|   A|    1|     5|
+| one|   B|    2|  null|
++----+----+-----+------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This syntax is much easier to read.&lt;/p&gt;
+
+&lt;h3 id=&#34;5-quantilediscretizer-feature-transformer:8ab4cd76c2e48d03608ec5aca1374ea6&#34;&gt;5. QuantileDiscretizer feature transformer&lt;/h3&gt;
+
+&lt;p&gt;Feature engineering is a big part of data mining.
+Usually, data scientists try a lot of different approaches and at the end run some black box algorithm, such as random forest or xgboost.
+The more features generated in the beginning, the better.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.ml.feature.QuantileDiscretizer&#34;&gt;QuantileDiscretizer&lt;/a&gt; is still experimental, but already available.
+It allows splitting feature into buckets, based on value&amp;rsquo;s quantiles.&lt;/p&gt;
+
+&lt;h3 id=&#34;conclusion:8ab4cd76c2e48d03608ec5aca1374ea6&#34;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;Apache Spark is a dynamic project, every version brings a lot of new features.
+Despite it offers excellent data manipulation tools, it is still quite weak in terms of data mining.
+Spark niche is a Big Data, where familiar techniques might simply not work.&lt;/p&gt;
+
+&lt;p&gt;It is worthwhile to follow Spark updates.
+Based on several previous versions, every one of them brought significant functionality to the tool.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Go versions, how to make updates easier</title>
@@ -23,12 +185,12 @@ It requires not only download and compile new version, but also update &lt;code&
 &lt;p&gt;One way to simplify this process is to use version manager, such as &lt;a href=&#34;https://github.com/moovweb/gvm&#34;&gt;gvm&lt;/a&gt;.
 Installations process is super easy:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;bash &amp;lt; &amp;lt;(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bash &amp;lt; &amp;lt;(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;To install proper version of Go use:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;gvm install go1.6
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gvm install go1.6
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;As simple as that.&lt;/p&gt;
@@ -60,7 +222,7 @@ This article shows usage of different command line tools for such task.&lt;/p&gt
 
 &lt;p&gt;All of the approaches would be compared in terms of execution time, tools availability and code complexity. File to be sorted consists of 10M lines:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;FILENAME=&amp;quot;/tmp/random-lines.$$.tmp&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;FILENAME=&amp;quot;/tmp/random-lines.$$.tmp&amp;quot;
 NUMLINES=10000000
 seq -f &#39;line %.0f&#39; $NUMLINES &amp;gt; $FILENAME;
 &lt;/code&gt;&lt;/pre&gt;
@@ -69,7 +231,7 @@ seq -f &#39;line %.0f&#39; $NUMLINES &amp;gt; $FILENAME;
 
 &lt;p&gt;Default &lt;code&gt;sort&lt;/code&gt; has option &lt;code&gt;-R&lt;/code&gt;, &lt;code&gt;--random-sort&lt;/code&gt; which sorts lines by random hash. However, if there are two lines with the same content, their hashes would be the same and they would be sorted one after another. To prevent such case, one may possible to make all of the lines unique via adding line number to all of them.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;nl -ba $FILENAME | sort -R | sed &#39;s/.*[0-9]\t//&#39; | head
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;nl -ba $FILENAME | sort -R | sed &#39;s/.*[0-9]\t//&#39; | head
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Time: 3 min 09.77 sec&lt;/p&gt;
@@ -82,7 +244,7 @@ seq -f &#39;line %.0f&#39; $NUMLINES &amp;gt; $FILENAME;
 
 &lt;p&gt;Another bash tool &lt;code&gt;shuf&lt;/code&gt; on the other hand will sufficiently randomize a list, including not putting duplicate lines next to each other. Another advantage of this tool is it&amp;rsquo;s availability. Being part of GNU core utils it is available on nearly every machine.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;shuf $FILENAME | head
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;shuf $FILENAME | head
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;It has parameter &lt;code&gt;-n&lt;/code&gt; to specify number of lines to output, however based on my tests, it does not speed up the process. Combination with &lt;code&gt;head&lt;/code&gt; works better.&lt;/p&gt;
@@ -97,7 +259,7 @@ seq -f &#39;line %.0f&#39; $NUMLINES &amp;gt; $FILENAME;
 
 &lt;p&gt;Tool &lt;code&gt;rl&lt;/code&gt; from &lt;a href=&#34;http://manpages.ubuntu.com/manpages/wily/en/man1/rl.1.html&#34;&gt;randomize-lines&lt;/a&gt; package makes random sampling easy, however, not every machine has it. As mentioned in it&amp;rsquo;s description: &amp;ldquo;It does this with only a single pass over the input while trying to use as little memory as possible&amp;rdquo;.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;rl $FILENAME | head
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;rl $FILENAME | head
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Time: 0.68 sec&lt;/p&gt;
@@ -110,7 +272,7 @@ seq -f &#39;line %.0f&#39; $NUMLINES &amp;gt; $FILENAME;
 
 &lt;p&gt;Perl is a good language for text processing. For those developers, who are less familiar with bash, it might be native to try it first.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;cat $FILENAME | perl -MList::Util=shuffle -e &#39;print shuffle(&amp;lt;STDIN&amp;gt;);&#39;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cat $FILENAME | perl -MList::Util=shuffle -e &#39;print shuffle(&amp;lt;STDIN&amp;gt;);&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Time: 2.11 sec&lt;/p&gt;
@@ -123,7 +285,7 @@ seq -f &#39;line %.0f&#39; $NUMLINES &amp;gt; $FILENAME;
 
 &lt;p&gt;Python is among most popular programming languages. Nowadays it exists on nearly every machine and a lot of developers worked with it at least once. It has library to work with random numbers and shuffles. As well as perl, it could be invoked from bash.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;python -c &amp;quot;import random, sys; lines = open(sys.argv[1]).readlines(); random.shuffle(lines); print &#39;&#39;.join(lines),&amp;quot;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;python -c &amp;quot;import random, sys; lines = open(sys.argv[1]).readlines(); random.shuffle(lines); print &#39;&#39;.join(lines),&amp;quot; $FILENAME
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Script execution is inefficient, it requires to store data in memory.&lt;/p&gt;

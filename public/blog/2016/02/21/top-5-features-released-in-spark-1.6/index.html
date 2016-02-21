@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Top 5 features released in spark 1.6 &middot; Kirill Pavlov</title>
+
+  
+  <link rel="stylesheet" href="http://kirillpavlov.com/css/poole.css">
+  <link rel="stylesheet" href="http://kirillpavlov.com/css/hyde.css">
+  <link rel="stylesheet" href="http://kirillpavlov.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://kirillpavlov.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://kirillpavlov.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://kirillpavlov.com/css/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://kirillpavlov.com/touch-icon-144-precomposed.png">
+  <link href="http://kirillpavlov.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Spark version 1.6 has been released on Jan 4th, 2016. Compared to previous version it has significant improvements. Let&#39;s cover top 5 of them.">
+  <meta name="keywords" content="kirill pavlov,software,blog,cv,development,data mining,trading,analysis">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <img src="https://www.gravatar.com/avatar/4ad1cf8cf3515355e570a73a1cfca54e?s=200" alt="gravatar">
+      <h1>Kirill Pavlov</h1>
+      <p class="lead">Let&rsquo;s change the world together!</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://kirillpavlov.com/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://kirillpavlov.com/about/">About Me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/pavlov99"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      <a href="https://www.linkedin.com/in/pavlov99"><i class="fa fa-linkedin-square fa-3x"></i></a>
+      
+      
+      <a href="http://twitter.com/pavlov99"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      
+      </li>
+    </ul>
+
+    <p>Copyright &copy; 2016 <a href="http://kirillpavlov.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>Top 5 features released in spark 1.6</h1>
+    <span class="post-date">Feb 21, 2016 &middot; 4 minute read &middot; <a href="http://kirillpavlov.com/blog/2016/02/21/top-5-features-released-in-spark-1.6/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="http://kirillpavlov.com/categories/spark">spark</a><a class="label" href="http://kirillpavlov.com/categories/spark-mllib">spark mllib</a>
+    </span>
+    
+
+<p>Spark version 1.6 <a href="https://spark.apache.org/releases/spark-release-1-6-0.html">has been released</a> on January 4th, 2016.
+Compared to the previous version, it has significant improvements. This article covers top 5 of them.</p>
+
+<h3 id="1-partition-by-column:8ab4cd76c2e48d03608ec5aca1374ea6">1. Partition by column</h3>
+
+<p>The idea is to have more control on RDD&rsquo;s partitioning.
+Sometimes data needs to be joined and grouped by certain key, such as user_id.
+To minify data reshuffling, one may possible to store chunks of objects with the same key within the same data node.</p>
+
+<p>This feature <a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+SortBy#LanguageManualSortBy-SyntaxofClusterByandDistributeBy">exists in Hive</a> and has been <a href="https://issues.apache.org/jira/browse/SPARK-11410">ported to spark</a>.
+Example of usage:</p>
+
+<pre><code class="language-scala">val df = sc.parallelize(Array(
+    (&quot;A&quot;, 1), (&quot;B&quot;, 2), (&quot;C&quot;, 3), (&quot;A&quot;, 4)
+)).toDF(&quot;key&quot;, &quot;value&quot;)
+val partitioned = df.repartition($&quot;key&quot;)
+</code></pre>
+
+<h3 id="2-groupeddata-pivot:8ab4cd76c2e48d03608ec5aca1374ea6">2. GroupedData Pivot</h3>
+
+<p>This feature is about data presentation: if we need to transform adjacency list to adjacency matrix or convert long narrow RDD to the matrix - pivot is our friend.
+Python has pivot functionality in Pandas DataFrames: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.unstack.html#pandas.DataFrame.unstack">unstack</a>.</p>
+
+<pre><code class="language-scala">val df = sc.parallelize(Array(
+    (&quot;one&quot;, &quot;A&quot;, 1), (&quot;one&quot;, &quot;B&quot;, 2), (&quot;two&quot;, &quot;A&quot;, 3), (&quot;two&quot;, &quot;B&quot;, 4)
+)).toDF(&quot;key1&quot;, &quot;key2&quot;, &quot;value&quot;)
+df.show()
+
++----+----+-----+
+|key1|key2|value|
++----+----+-----+
+| one|   A|    1|
+| one|   B|    2|
+| two|   A|    3|
+| two|   B|    4|
++----+----+-----+
+</code></pre>
+
+<p><a href="https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.GroupedData">GroupedData.pivot</a> allows making values from columns <em>key1</em> or <em>key2</em> new columns.
+For example:</p>
+
+<pre><code class="language-scala">df.groupBy(&quot;key1&quot;).pivot(&quot;key2&quot;).sum(&quot;value&quot;).show()
+
++----+-+-+
+|key1|A|B|
++----+-+-+
+| one|1|2|
+| two|3|4|
++----+-+-+
+</code></pre>
+
+<p>Usually, data to be pivoted is not big and to avoid reshuffling, it makes sense to use <code>coalesce</code> first.</p>
+
+<pre><code class="language-scala">// Better to combine data within one data node before pivot
+val groupedData = df.groupBy(&quot;key1&quot;).coalesce(1).cache()
+groupedData.pivot(&quot;key2&quot;).sum(&quot;value&quot;)
+</code></pre>
+
+<h3 id="3-standard-deviation-calculation:8ab4cd76c2e48d03608ec5aca1374ea6">3. Standard deviation calculation</h3>
+
+<p>Spark is not yet mature in terms of statistics calculation. For example, it does not allow to <a href="https://stackoverflow.com/questions/28158729/how-can-i-calculate-exact-median-with-apache-spark#answer-28160731">calculate the median</a> value of the column. One of the reasons is that linear algorithm could not be generalized to distributed RDD.</p>
+
+<p>Simple standard deviation was introduced only in spark 1.6.
+A Potential problem with custom calculation could be with type overflow.
+Example of usage:</p>
+
+<pre><code>df.agg(stddev(&quot;value&quot;))
+</code></pre>
+
+<h3 id="4-simplified-outer-join:8ab4cd76c2e48d03608ec5aca1374ea6">4. Simplified outer join</h3>
+
+<p>Join operation is essential for data manipulation and filtering in both RDBMS and distributed systems.
+There are different types of joins, such as inner, left outer, right outer, semi, etc.
+While inner join of data was relatively easy in earlier versions of spark, all of the other types required to specify join expression.
+There are even more difficulties if join uses two or more columns.</p>
+
+<p>Join expressions are not that easy because they require additional DataFrame manipulations, such as column rename and further drop.
+If the column has the same name in both data frames, it would not be dropped automatically and cause problems with future select.</p>
+
+<p>Suppose we have another DataFrame</p>
+
+<pre><code class="language-scala">val df2 = sc.parallelize(Array(
+    (&quot;one&quot;, &quot;A&quot;, 5), (&quot;two&quot;, &quot;A&quot;, 6)
+)).toDF(&quot;key1&quot;, &quot;key2&quot;, &quot;value2&quot;)
+df2.show()
+
++----+----+------+
+|key1|key2|value2|
++----+----+------+
+| one|   A|     5|
+| two|   A|     6|
++----+----+------+
+</code></pre>
+
+<p>Outer join prior to 1.6 could only be done using join expression:</p>
+
+<pre><code class="language-scala">val joined = df.join(df2, df(&quot;key1&quot;) === df2(&quot;key1&quot;) &amp;&amp; df(&quot;key2&quot;) === df2(&quot;key2&quot;), &quot;left_outer&quot;)
+joined.show()
+
++----+----+-----+----+----+------+
+|key1|key2|value|key1|key2|value2|
++----+----+-----+----+----+------+
+| two|   A|    3| two|   A|     6|
+| two|   B|    4|null|null|  null|
+| one|   A|    1| one|   A|     5|
+| one|   B|    2|null|null|  null|
++----+----+-----+----+----+------+
+</code></pre>
+
+<p>Result data frame has duplicated column names, any operations with them would throw an error</p>
+
+<pre><code class="language-scala">joined.select(&quot;key2&quot;)
+
+org.apache.spark.sql.AnalysisException: Reference 'key2' is ambiguous, could be: key2#28, key2#34.;
+</code></pre>
+
+<p>To avoid duplication, one possible to rename columns before and drop them after the join.
+The code in this case becomes messy and requires explanation.
+Spark 1.6 simplifies <a href="https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.DataFrame">join</a> and allows to write</p>
+
+<pre><code class="language-scala">df.join(df2, Seq(&quot;key1&quot;, &quot;key2&quot;), &quot;left_outer&quot;).show()
+
++----+----+-----+------+
+|key1|key2|value|value2|
++----+----+-----+------+
+| two|   A|    3|     6|
+| two|   B|    4|  null|
+| one|   A|    1|     5|
+| one|   B|    2|  null|
++----+----+-----+------+
+</code></pre>
+
+<p>This syntax is much easier to read.</p>
+
+<h3 id="5-quantilediscretizer-feature-transformer:8ab4cd76c2e48d03608ec5aca1374ea6">5. QuantileDiscretizer feature transformer</h3>
+
+<p>Feature engineering is a big part of data mining.
+Usually, data scientists try a lot of different approaches and at the end run some black box algorithm, such as random forest or xgboost.
+The more features generated in the beginning, the better.</p>
+
+<p><a href="https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.ml.feature.QuantileDiscretizer">QuantileDiscretizer</a> is still experimental, but already available.
+It allows splitting feature into buckets, based on value&rsquo;s quantiles.</p>
+
+<h3 id="conclusion:8ab4cd76c2e48d03608ec5aca1374ea6">Conclusion</h3>
+
+<p>Apache Spark is a dynamic project, every version brings a lot of new features.
+Despite it offers excellent data manipulation tools, it is still quite weak in terms of data mining.
+Spark niche is a Big Data, where familiar techniques might simply not work.</p>
+
+<p>It is worthwhile to follow Spark updates.
+Based on several previous versions, every one of them brought significant functionality to the tool.</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "kirillpavlovcom";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "kirillpavlovcom";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://kirillpavlov.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-48154141-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
+

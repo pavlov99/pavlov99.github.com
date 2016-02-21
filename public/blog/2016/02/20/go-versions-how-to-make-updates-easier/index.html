@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="http://kirillpavlov.com/css/poole-overrides.css">
   <link rel="stylesheet" href="http://kirillpavlov.com/css/hyde-overrides.css">
   <link rel="stylesheet" href="http://kirillpavlov.com/css/hyde-x.css">
-  <link rel="stylesheet" href="http://kirillpavlov.com/css/highlight/default.css">
+  <link rel="stylesheet" href="http://kirillpavlov.com/css/highlight/zenburn.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -73,7 +73,7 @@
     <span class="post-date">Feb 20, 2016 &middot; 1 minute read &middot; <a href="http://kirillpavlov.com/blog/2016/02/20/go-versions-how-to-make-updates-easier/#disqus_thread">Comments</a>
     
     <br/>
-    
+    <a class="label" href="http://kirillpavlov.com/categories/golang">golang</a>
     </span>
     <p><a href="https://golang.org/">Go</a> is an open source programming language that makes it easy to build simple, reliable, and efficient software.</p>
 
@@ -83,12 +83,12 @@ It requires not only download and compile new version, but also update <code>$GO
 <p>One way to simplify this process is to use version manager, such as <a href="https://github.com/moovweb/gvm">gvm</a>.
 Installations process is super easy:</p>
 
-<pre><code>bash &lt; &lt;(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+<pre><code class="language-bash">bash &lt; &lt;(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 </code></pre>
 
 <p>To install proper version of Go use:</p>
 
-<pre><code>gvm install go1.6
+<pre><code class="language-bash">gvm install go1.6
 </code></pre>
 
 <p>As simple as that.</p>
