@@ -6,8 +6,27 @@
     <description>Recent content in Posts on Kirill Pavlov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Feb 2016 00:20:45 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 22 Feb 2016 20:09:47 +0800</lastBuildDate>
     <atom:link href="http://kirillpavlov.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to update your maven</title>
+      <link>http://kirillpavlov.com/blog/2016/02/22/how-to-update-your-maven/</link>
+      <pubDate>Mon, 22 Feb 2016 20:09:47 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/blog/2016/02/22/how-to-update-your-maven/</guid>
+      <description>&lt;p&gt;Maven is a popular build manager in java world. It is used to build Apache Spark, for example.
+Here is correct deb repository with latest version:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get purge maven maven2 maven3
+sudo apt-add-repository ppa:andrei-pozolotin/maven3
+sudo apt-get update
+sudo apt-get install maven3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Version available at the time of writing is &lt;code&gt;3.3.9&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Top 5 features released in spark 1.6</title>
