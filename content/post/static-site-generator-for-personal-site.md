@@ -1,7 +1,7 @@
 +++
 categories = ["golang","hugo","static site"]
 date = "2015-08-22T23:31:19+08:00"
-description = "Hugo as personal site generator"
+description = "Hugo as personal site generator."
 keywords = ["hugo","golang","static site"]
 title = "Static site generator for personal blog"
 +++

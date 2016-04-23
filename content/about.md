@@ -12,9 +12,10 @@ Hi! My name is Kirill Pavlov, I'm a data scientist and software engeneer.
 While I'm working on content update, check out my [CV](/cv/cv-kirill-pavlov.pdf),
 [github resume](http://resume.github.io/?pavlov99) and [github report card](http://osrc.dfm.io/pavlov99).
 
-I am also doing project Euler tasks, you could track my progress here:
-![Project Euler badge](https://projecteuler.net/profile/pavlov99.png)
+My PGP key is on [keybase](https://keybase.io/p99).
 
+I am also doing project Euler tasks, you could track the progress here:
+![Project Euler badge](https://projecteuler.net/profile/pavlov99.png)
 
 ## My name
 
@@ -24,3 +25,7 @@ One of the inventors of [Cyrillic Alpabet](https://en.wikipedia.org/wiki/Cyrilli
 
 In English my name is pronounced as [k'iriɛl p'avlov].
 My Chinese name is 巴吉霖 (bā jí lín).
+
+## Contact me
+
+Please use e-mail: pavlov99 [at] yandex.ru

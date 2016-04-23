@@ -1,7 +1,7 @@
 +++
 categories = ["maven","build manager","mvn"]
 date = "2016-02-22T20:09:47+08:00"
-description = "Install proper maven version on your computer, howto"
+description = "Install proper maven version on your computer, howto."
 keywords = []
 title = "How to update your maven"
 
