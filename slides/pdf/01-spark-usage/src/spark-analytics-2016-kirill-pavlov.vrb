@@ -1,0 +1,20 @@
+\frametitle{Example: Estimators and Transformers}
+
+{\footnotesize
+\begin{minted}[linenos,
+               numbersep=2pt,
+               frame=lines,
+               framesep=2mm]{scala}
+// Define indexers and encoders
+val fieldsToIndex = Array("gender", "curr_tier_type",  "prefred_lang")
+val indexers = fieldsToIndex.map(f => new StringIndexer()
+  .setInputCol(f).setOutputCol(f + "_index"))
+
+val fieldsToEncode = Array("gender", "prefred_lang")
+val oneHotEncoders = fieldsToEncode.map(f => new OneHotEncoder()
+  .setInputCol(f + "_index").setOutputCol(f + "_flags"))
+
+// Combine stages into pipeline
+val pipeline = new Pipeline().setStages(indexers ++ oneHotEncoders)
+\end{minted}
+}

@@ -1,0 +1,69 @@
+Before the presentation:
+Thanks to the previous presenters and Mark for the organisation.
+
+Presentation
+============
+* Questionanarie.
+* [optional] About myself.
+* Goal is to provide extensive info about spark usage. Advantages and disadvantages. Presentation is shared and has links for future reading. It is meant to be easy for further copy-and-past.
+* Assumptions about the audience.
+
+Overview
+--------
+environment, zeppelin, scala, hive and sparksql, data visualization, ad-hoc vs reporting vs core modules, data workflow.
+spark sql/hive. variety of sql queries. what is the motivation to use sql versus for-loop.
+* DataFrame vs RDD
+* What is the split between data preparation and data mining? 80:20?
+* How do we work with spark in the private cloud: zeppelin. Why zeppelin?
+* We use scala. Why not python? native integration.
+* Why zeppelin? (notebook at all/compare to Jupyter)
+* Data visualization part (we use excel/external 3rd party tools). Sometimes d3js.
+* Data visualization split data generation from data plot. Automate genration part.
+
+Data transformation & analysis with spark
+-----------------------------------------
+why sql?
+external libs and csv.
+* How to add external libs?
+* Hive vs SparkSQL vs DataFrame.  (Hive -> SparkSQL -> DataFrame + UDF -> DataFrame + DataFrame functions).
+* Join syntactic sugar.
+* How to test spark? Unit tests.
+* DF caching
+* Export to csv. Coalesce, Repartition.
+* Pivot functionality, usage (after coalesce).
+* Comparison with pandas dataframe. Less functions, but much better handling of datasets with > 1-2M records.
+* Adhoc: zeppelin + csv export + transformation csv to python + bash with HDFS to filesystem
+* Production: scala code in repository.
+* How to organize the data: split code frome the data. Lookup tables, enriched tables. Manual excel handling -> csv -> HDFS. The same with crawled data. code does not have magic constants: security and logical separation.
+* Approach with notebooks and code. If anything is standartized, we inject it into code.
+* Plotly vs d3 vs native zeppelin (python/R etc) vs excel vs QlickView/Tableu
+
+
+Data mining with spark
+----------------------
+
+* ml vs mllib
+* Feature engineering.
+* Pipelines, Feature transformation.
+* Algorithms (5 types, logically very good, practically still need to work).
+* Examples of feature transformation.
+* Types of algorithms there. Point that there are feature transformators, but algos are really limited, because of distribution.
+
+What is the difference between spark/production approach and kaggle?
+Should we use spark for kaggle? No. because data is already prepared.
+Should we use it for data transformation? Yes. It is productionized.
+Spark vs Python/R (productionized approach). Could handle much bigger data.
+Spark vs DWH (Postgres/Oracle). Best sql script would be faster, than best DF transformation. However, it is harder to write best sql. Spark has DAG optimizer.
+
+types of questions we solve: customer lifetime value, member acquisition and defection, data explaratory analysis, personalized marketing campaings.
+spark intro: what is that (From JJ presentation).
+
+Quiz?
+Recap.
+
+Software engeneer - analyst - consultant
+
+
+At the end:
+* Contacts (where to find the presentation) + email and website.
+* We are hiring
