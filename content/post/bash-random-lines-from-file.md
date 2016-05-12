@@ -2,7 +2,7 @@
 date = "2015-08-27T06:18:14Z"
 title = "Get random lines from file with bash"
 categories = ["bash"]
-description = "Data sampling with bash"
+description = "Data sampling with bash."
 keywords = ["bash","sampling"]
 +++
 
