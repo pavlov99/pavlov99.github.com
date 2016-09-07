@@ -1,5 +1,5 @@
 +++
-categories = []
+categories = ["spark"]
 date = "2016-04-23T09:40:05+08:00"
 description = "Examples of DataFrame jois with spark and why output sometimes looks wrong. This article covers variety of join types, including non-equi-join and slowly changing dimensions."
 keywords = ["spark"]
