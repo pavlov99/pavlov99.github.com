@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hive on Kirill Pavlov</title>
+    <link>http://kirillpavlov.com/categories/hive/</link>
+    <description>Recent content in Hive on Kirill Pavlov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 07 Sep 2016 20:15:41 +0800</lastBuildDate>
+    <atom:link href="http://kirillpavlov.com/categories/hive/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Lookup table maintenance in Hive</title>
+      <link>http://kirillpavlov.com/blog/2016/09/07/lookup-table-maintenance-in-hive/</link>
+      <pubDate>Wed, 07 Sep 2016 20:15:41 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/blog/2016/09/07/lookup-table-maintenance-in-hive/</guid>
+      <description>&lt;p&gt;Lookup table is a translation table, aimed to enrich and extend base data.
+Such tables are very common, especially in data warehousing (schema normalization) and business analytics area.
+Usually they are mainteined manually and developers are constantly looking for the ways to simplify this process.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s consider an example: base table consists of &lt;a href=&#34;http://sharks.nhl.com/club/page.htm?id=81102&#34;&gt;San Jose Sharks 2016-2017 NHL season schedule&lt;/a&gt;.
+The goal is to analyze, how many games are played against each of four divisions teams.&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kirillpavlov.com/images/san-jose-nhl-schedule-2016-2017-example.png&#34; alt=&#34;data example&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+
+&lt;p&gt;This table is located in a database already, but there is no information about divisions.
+If data is small, then one can use SQL expression &amp;ldquo;if team == xxx then division = yyy&amp;rdquo;
+However this is not the case. There are 30 teams and nobody would write such big query.
+A way to go is to manually create small table and join it with original data. The other question is in maintenance – even small data needs to be updated time to time. One of the best tool to use for lookup data manipulation is Excel because it exists nearly everywhere and a lot of people know how to work with it. Data from Excel is exported to csv and uploaded to Hadoop. This is a general idea, lets talk about the details.&lt;/p&gt;
+
+&lt;p&gt;Full lookup table in Excel looks like&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kirillpavlov.com/images/lookup-example-nhl-teams.png&#34; alt=&#34;lookup table example&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+
+&lt;p&gt;Example of base data and lookup (shop transactions and product categories)&lt;/p&gt;
+
+&lt;p&gt;Could we do if-when? It is easier to use table.&lt;/p&gt;
+
+&lt;p&gt;How to upload such table? How to maintain? Excel and dump to csv.&lt;/p&gt;
+
+&lt;p&gt;csv with schema, better to use hive and external table.&lt;/p&gt;
+
+&lt;p&gt;hive view.&lt;/p&gt;
+
+&lt;p&gt;Often such tables are maintaned manually. For example&lt;/p&gt;
+
+&lt;p&gt;Often analysts would use lookup tables for data manipulation. It is common, that such
+tables are maintained manually in Excel.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

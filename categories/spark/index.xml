@@ -6,8 +6,270 @@
     <description>Recent content in Spark on Kirill Pavlov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Feb 2016 00:20:45 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 23 Apr 2016 09:40:05 +0800</lastBuildDate>
     <atom:link href="http://kirillpavlov.com/categories/spark/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Beyond traditional join with Apache Spark</title>
+      <link>http://kirillpavlov.com/blog/2016/04/23/beyond-traditional-join-with-apache-spark/</link>
+      <pubDate>Sat, 23 Apr 2016 09:40:05 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/blog/2016/04/23/beyond-traditional-join-with-apache-spark/</guid>
+      <description>
+
+&lt;p&gt;An &lt;a href=&#34;https://en.wikipedia.org/wiki/Join_(SQL)&#34;&gt;SQL join&lt;/a&gt; clause combines records from two or more tables.
+This operation is very common in data processing and understanding of what happens under the hood is important.
+There are several common join types: &lt;code&gt;INNER&lt;/code&gt;, &lt;code&gt;LEFT OUTER&lt;/code&gt;, &lt;code&gt;RIGHT OUTER&lt;/code&gt;, &lt;code&gt;FULL OUTER&lt;/code&gt; and &lt;code&gt;CROSS&lt;/code&gt; or &lt;code&gt;CARTESIAN&lt;/code&gt;.&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kirillpavlov.com/images/join-types.png&#34; alt=&#34;join types&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+
+&lt;p&gt;Join which uses the same table is a self-join.
+If an operation uses equality operator, it is &lt;a href=&#34;https://en.wikipedia.org/wiki/Join_(SQL)#Equi-join&#34;&gt;equi-join&lt;/a&gt;, otherwise, it is non-equi-join.&lt;/p&gt;
+
+&lt;p&gt;This article covers different join types in Apache Spark as well as examples of &lt;a href=&#34;https://en.wikipedia.org/wiki/Slowly_changing_dimension&#34;&gt;slowly changed dimensions (SCD)&lt;/a&gt; and joins on non-unique columns.&lt;/p&gt;
+
+&lt;h3 id=&#34;sample-data:58684124e2b27686159fe7ccddda41aa&#34;&gt;Sample data&lt;/h3&gt;
+
+&lt;p&gt;All subsequent explanations on join types in this article make use of the following two tables, taken from Wikipedia article.
+The rows in these tables serve to illustrate the effect of different types of joins and join-predicates.&lt;/p&gt;
+
+&lt;p&gt;Employees table has a nullable column. To express it in terms of statically typed Scala, one needs to use &lt;a href=&#34;http://www.scala-lang.org/api/current/#scala.Option&#34;&gt;Option&lt;/a&gt; type.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val employees = sc.parallelize(Array[(String, Option[Int])](
+  (&amp;quot;Rafferty&amp;quot;, Some(31)), (&amp;quot;Jones&amp;quot;, Some(33)), (&amp;quot;Heisenberg&amp;quot;, Some(33)), (&amp;quot;Robinson&amp;quot;, Some(34)), (&amp;quot;Smith&amp;quot;, Some(34)), (&amp;quot;Williams&amp;quot;, null)
+)).toDF(&amp;quot;LastName&amp;quot;, &amp;quot;DepartmentID&amp;quot;)
+
+employees.show()
+
++----------+------------+
+|  LastName|DepartmentID|
++----------+------------+
+|  Rafferty|          31|
+|     Jones|          33|
+|Heisenberg|          33|
+|  Robinson|          34|
+|     Smith|          34|
+|  Williams|        null|
++----------+------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Department table does not have nullable columns, type specification could be omitted.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val departments = sc.parallelize(Array(
+  (31, &amp;quot;Sales&amp;quot;), (33, &amp;quot;Engineering&amp;quot;), (34, &amp;quot;Clerical&amp;quot;),
+  (35, &amp;quot;Marketing&amp;quot;)
+)).toDF(&amp;quot;DepartmentID&amp;quot;, &amp;quot;DepartmentName&amp;quot;)
+
+departments.show()
+
++------------+--------------+
+|DepartmentID|DepartmentName|
++------------+--------------+
+|          31|         Sales|
+|          33|   Engineering|
+|          34|      Clerical|
+|          35|     Marketing|
++------------+--------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;inner-join:58684124e2b27686159fe7ccddda41aa&#34;&gt;Inner join&lt;/h3&gt;
+
+&lt;p&gt;Following SQL code&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-SQL&#34;&gt;SELECT *
+FROM employee 
+INNER JOIN department
+ON employee.DepartmentID = department.DepartmentID;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;could be written in Spark as&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;employees
+  .join(departments, &amp;quot;DepartmentID&amp;quot;)
+  .show()
+
++------------+----------+--------------+
+|DepartmentID|  LastName|DepartmentName|
++------------+----------+--------------+
+|          31|  Rafferty|         Sales|
+|          33|     Jones|   Engineering|
+|          33|Heisenberg|   Engineering|
+|          34|  Robinson|      Clerical|
+|          34|     Smith|      Clerical|
++------------+----------+--------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Beautiful, is not it? Spark automatically removes duplicated &amp;ldquo;DepartmentID&amp;rdquo; column, so column names are unique and one does not need to use table prefix to address them.&lt;/p&gt;
+
+&lt;h3 id=&#34;left-outer-join:58684124e2b27686159fe7ccddda41aa&#34;&gt;Left outer join&lt;/h3&gt;
+
+&lt;p&gt;Left outer join is a very common operation, especially if there are nulls or gaps in a data.
+Note, that column name should be wrapped into scala &lt;code&gt;Seq&lt;/code&gt; if join type is specified.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;employees
+  .join(departments, Seq(&amp;quot;DepartmentID&amp;quot;), &amp;quot;left_outer&amp;quot;)
+  .show()
+
++------------+----------+--------------+
+|DepartmentID|  LastName|DepartmentName|
++------------+----------+--------------+
+|          31|  Rafferty|         Sales|
+|          33|     Jones|   Engineering|
+|          33|Heisenberg|   Engineering|
+|          34|  Robinson|      Clerical|
+|          34|     Smith|      Clerical|
+|        null|  Williams|          null|
++------------+----------+--------------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;other-join-types:58684124e2b27686159fe7ccddda41aa&#34;&gt;Other join types&lt;/h3&gt;
+
+&lt;p&gt;Spark allows using following join types: &lt;code&gt;inner&lt;/code&gt;, &lt;code&gt;outer&lt;/code&gt;, &lt;code&gt;left_outer&lt;/code&gt;, &lt;code&gt;right_outer&lt;/code&gt;, &lt;code&gt;leftsemi&lt;/code&gt;.
+The interface is the same as for left outer join in the example above.&lt;/p&gt;
+
+&lt;p&gt;For cartesian join column specification should be omitted:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;employees
+  .join(departments)
+  .show(10)
+
++----------+------------+------------+--------------+
+|  LastName|DepartmentID|DepartmentID|DepartmentName|
++----------+------------+------------+--------------+
+|  Rafferty|          31|          31|         Sales|
+|  Rafferty|          31|          33|   Engineering|
+|  Rafferty|          31|          34|      Clerical|
+|  Rafferty|          31|          35|     Marketing|
+|     Jones|          33|          31|         Sales|
+|     Jones|          33|          33|   Engineering|
+|     Jones|          33|          34|      Clerical|
+|     Jones|          33|          35|     Marketing|
+|Heisenberg|          33|          31|         Sales|
+|Heisenberg|          33|          33|   Engineering|
++----------+------------+------------+--------------+
+only showing top 10 rows
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Warning: do not use cartesian join with big tables in production.&lt;/p&gt;
+
+&lt;h3 id=&#34;join-expression-slowly-changing-dimensions-and-non-equi-join:58684124e2b27686159fe7ccddda41aa&#34;&gt;Join expression, slowly changing dimensions and non-equi join&lt;/h3&gt;
+
+&lt;p&gt;Spark allows us to specify join expression instead of a sequence of columns.
+In general, expression specification is less readable, so why do we need such flexibility?
+The reason is non-equi join.&lt;/p&gt;
+
+&lt;p&gt;One application of it is slowly changing dimensions.
+Assume there is a table with product prices over time:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val products = sc.parallelize(Array(
+  (&amp;quot;steak&amp;quot;, &amp;quot;1990-01-01&amp;quot;, &amp;quot;2000-01-01&amp;quot;, 150),
+  (&amp;quot;steak&amp;quot;, &amp;quot;2000-01-02&amp;quot;, &amp;quot;2020-01-01&amp;quot;, 180),
+  (&amp;quot;fish&amp;quot;, &amp;quot;1990-01-01&amp;quot;, &amp;quot;2020-01-01&amp;quot;, 100)
+)).toDF(&amp;quot;name&amp;quot;, &amp;quot;startDate&amp;quot;, &amp;quot;endDate&amp;quot;, &amp;quot;price&amp;quot;)
+
+products.show()
+
++-----+----------+----------+-----+
+| name| startDate|   endDate|price|
++-----+----------+----------+-----+
+|steak|1990-01-01|2000-01-01|  150|
+|steak|2000-01-02|2020-01-01|  180|
+| fish|1990-01-01|2020-01-01|  100|
++-----+----------+----------+-----+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There are two products only: steak and fish, price of steak has been changed once.
+Another table consists of product orders by day:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val orders = sc.parallelize(Array(
+  (&amp;quot;1995-01-01&amp;quot;, &amp;quot;steak&amp;quot;),
+  (&amp;quot;2000-01-01&amp;quot;, &amp;quot;fish&amp;quot;),
+  (&amp;quot;2005-01-01&amp;quot;, &amp;quot;steak&amp;quot;)
+)).toDF(&amp;quot;date&amp;quot;, &amp;quot;product&amp;quot;)
+
+orders.show()
+
++----------+-------+
+|      date|product|
++----------+-------+
+|1995-01-01|  steak|
+|2000-01-01|   fish|
+|2005-01-01|  steak|
++----------+-------+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Our goal is to assign an actual price for every record in the orders table.
+It is not obvious to do using only equality operators, however, spark join expression allows us to achieve the result in an elegant way:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;orders
+  .join(products, $&amp;quot;product&amp;quot; === $&amp;quot;name&amp;quot; &amp;amp;&amp;amp; $&amp;quot;date&amp;quot; &amp;gt;= $&amp;quot;startDate&amp;quot; &amp;amp;&amp;amp; $&amp;quot;date&amp;quot; &amp;lt;= $&amp;quot;endDate&amp;quot;)
+  .show()
+
++----------+-------+-----+----------+----------+-----+
+|      date|product| name| startDate|   endDate|price|
++----------+-------+-----+----------+----------+-----+
+|2000-01-01|   fish| fish|1990-01-01|2020-01-01|  100|
+|1995-01-01|  steak|steak|1990-01-01|2000-01-01|  150|
+|2005-01-01|  steak|steak|2000-01-02|2020-01-01|  180|
++----------+-------+-----+----------+----------+-----+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This technique is very useful, yet not that common.
+It could save a lot of time for those who write as well as for those who read the code.&lt;/p&gt;
+
+&lt;h3 id=&#34;inner-join-using-non-primary-keys:58684124e2b27686159fe7ccddda41aa&#34;&gt;Inner join using non primary keys&lt;/h3&gt;
+
+&lt;p&gt;Last part of this article is about joins on non unique columns and common mistakes related to it.
+Join (intersection) diagrams in the beginning of this article stuck in our heads.
+Because of visual comparison of sets intersection we assume, that result table after inner join should be smaller, than any of the source tables.
+This is correct only for joins on unique columns and wrong if columns in both tables are not unique.
+Consider following DataFrame with duplicated records and its self-join:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;val df = sc.parallelize(Array(
+  (0), (1), (1)
+)).toDF(&amp;quot;c1&amp;quot;)
+
+df.show()
+df.join(df, &amp;quot;c1&amp;quot;).show()
+
+// Original DataFrame
++---+
+| c1|
++---+
+|  0|
+|  1|
+|  1|
++---+
+
+// Self-joined DataFrame
++---+
+| c1|
++---+
+|  0|
+|  1|
+|  1|
+|  1|
+|  1|
++---+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note, that size of the result DataFrame is bigger than the source size. It could be as big as n&lt;sup&gt;2&lt;/sup&gt;, where n is a size of source.&lt;/p&gt;
+
+&lt;h3 id=&#34;conclusion:58684124e2b27686159fe7ccddda41aa&#34;&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;The article covered different join types implementations with Apache Spark, including join expressions and join on non-unique keys.&lt;/p&gt;
+
+&lt;p&gt;Apache Spark allows developers to write the code in the way, which is easier to understand. It improves code quality and maintainability.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Top 5 features released in spark 1.6</title>
