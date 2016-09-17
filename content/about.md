@@ -10,7 +10,7 @@ menu = "main"
 
 Hi! My name is Kirill Pavlov, I'm a data scientist and software engeneer.
 While I'm working on content update, check out my [CV](/cv/cv-kirill-pavlov.pdf),
-[github resume](http://resume.github.io/?pavlov99) and [hackerrank](http://www.hackerrank.com/pavlov99).
+[github resume](http://resume.github.io/?pavlov99), [hackerrank](http://www.hackerrank.com/pavlov99) and [kaggle](http://www.kaggle.com/pavlov99).
 
 Some of the longer articles from this blog are duplicated at my [medium](http://medium.com/@p99) channel.
 
