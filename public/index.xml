@@ -6,8 +6,90 @@
     <description>Recent content on Kirill Pavlov</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 Sep 2016 20:15:41 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 27 Sep 2016 08:06:30 +0800</lastBuildDate>
     <atom:link href="http://kirillpavlov.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>From zero to four: how to get top machine learning badge on HackerRank</title>
+      <link>http://kirillpavlov.com/blog/2016/09/27/from-zero-to-four-how-to-get-top-machine-learning-badge-on-hackerrank/</link>
+      <pubDate>Tue, 27 Sep 2016 08:06:30 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/blog/2016/09/27/from-zero-to-four-how-to-get-top-machine-learning-badge-on-hackerrank/</guid>
+      <description>
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kirillpavlov.com/images/hackerrank-for-dummies.png&#34; alt=&#34;hacker rank for dummies&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+
+&lt;p&gt;&lt;a href=&#34;https://www.hackerrank.com/&#34;&gt;HackerRank&lt;/a&gt; is a company that focuses on competitive programming challenges. Compared to TopCoder or Codeforces it covers more software engineering areas, e.g. machine learning and functional programming. The company offers two types of challenges: contests and domain competitions. First requires to solve as many tasks as possible during given time frame, while second counts points for every solved problem regardless time. To drive competition among the users, HackerRank gives medals for good results in contests and &lt;a href=&#34;https://www.hackerrank.com/scoring#badges-and-medals&#34;&gt;badges&lt;/a&gt; for achievements in domain competitions.&lt;/p&gt;
+
+&lt;p&gt;There are three types of badges for each of the domains: Algorithms, Machine Learning and Functional Programming. Each badge could have from one to four stars: the more stars, the better. In addition to stars, HackerRank shows user rating as a percentile of overtaken competitors.&lt;/p&gt;
+
+&lt;p&gt;Based on my observation, Machine Learning is a second popular domain on the website. One could say, that the most well-known service to test skills in that area is &lt;a href=&#34;https://www.kaggle.com/&#34;&gt;Kaggle&lt;/a&gt;. Compared to it HackerRank is focused more on software engineering tasks, which take from one day to two weeks to solve.&lt;/p&gt;
+
+&lt;p&gt;To a certain extent, Machine Learning domain is marketing driven. First of all, it is also called Artificial Intelligence. It consists of sub-domains with “buzz” names: “Bot Building”, “Natural Language Processing”, “Digital Image Analysis”, etc. Some of the sub-domains have a little to do with Machine Learning, e.g. “A* Search”, “Alpha Beta Pruning” and “Combinatorics”. Data Science is not there yet.&lt;/p&gt;
+
+&lt;h2 id=&#34;scoring-system:74c267cb7e3ab808294ca34d7512f04c&#34;&gt;Scoring system&lt;/h2&gt;
+
+&lt;p&gt;As mentioned earlier, users could earn stars on their badges and rating towards higher percentile. I would split a journey into three phases illustrated below:&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kirillpavlov.com/images/hackerrank-phases.png&#34; alt=&#34;machine learning badge phases&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+
+&lt;p&gt;During first phase a user should score at least 50 points each in each of the following sub-domains: “Bot Building” and “Statistics and Machine Learning”. In addition to that, there are should be 150 points in total. After this phase, a user would have a badge with one star on the profile page.&lt;/p&gt;
+
+&lt;p&gt;Second phase strategy is to increase the number of stars to the maximum. Each star is given for next 25% percentile group entering. One need to overtake 75% of users to receive four stars. It requires to score about 700 points. Interestingly, because of a large number of participants, a difference between one and two stars is minimal. Three solved problems could already make it.&lt;/p&gt;
+
+&lt;p&gt;It is not that hard to achieve a maximum level in Machine Learning domain. In fact, the whole game just starts after it. Now the only distinguishing factor is a rank and user’s percentile. I was able to &lt;a href=&#34;https://www.hackerrank.com/pavlov99&#34;&gt;enter top 10%&lt;/a&gt; in two weeks.&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kirillpavlov.com/images/hackerrank-proof.png&#34; alt=&#34;hacker rank proof&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+
+&lt;h2 id=&#34;how-to:74c267cb7e3ab808294ca34d7512f04c&#34;&gt;How To&lt;/h2&gt;
+
+&lt;p&gt;To earn the first star one need to get 50 points in “Bot Building” and “Statistics and Machine Learning” sub-domains.&lt;/p&gt;
+
+&lt;p&gt;First four tasks from “Bot Building” give you 57 points. Later tasks do not have a perfect solution and require heuristics implementation and &lt;a href=&#34;https://www.hackerrank.com/environment/writing-to-file&#34;&gt;memory simulation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;“Statistics and Machine Learning” has a bunch of correlation tasks, which could be solved with &lt;a href=&#34;https://www.wolframalpha.com/&#34;&gt;Wolfram Alpha&lt;/a&gt; and relatively easy regression tasks. Note, that some of the solutions would work with different tasks, so one could earn points without coding. Get just enough points here and move on. There are easier sub-domains remain untouched.&lt;/p&gt;
+
+&lt;p&gt;Once both required areas are covered, it is easier to &lt;strong&gt;solve problems by categories&lt;/strong&gt;. Reuse as much code as possible and write as less as possible. I recommend to go for “Probability and Statistics” sub-domain first and solve everything there.&lt;/p&gt;
+
+&lt;p&gt;My next choice was “Natural Language Processing”. Python’s package nltk works well here. Note, to get maximum points in minimal time frame you don’t need to actually program solution. &lt;a href=&#34;https://www.hackerrank.com/challenges/nlp-pos-tagging-2&#34;&gt;Some tasks&lt;/a&gt; have only several possible answers, so try them one by one.&lt;/p&gt;
+
+&lt;p&gt;Be aware of tricks and always read Discussions and Editorial if available. Even if a task is simple, user community might help with techniques to apply in more complicated versions. Ironically, some people “hacked” HackerRank and &lt;a href=&#34;https://www.hackerrank.com/challenges/from-paragraphs-to-sentences/leaderboard&#34;&gt;scored 80 points out of 40 possible&lt;/a&gt; in one of the tasks.&lt;/p&gt;
+
+&lt;p&gt;These steps allowed to receive four stars and even make it to 90% percentile. I believe that the game only begins and there are more challenges to solve, however, gamification part of the journey is already ended.&lt;/p&gt;
+
+&lt;p&gt;In addition to this advice, I recommend to &lt;strong&gt;choose a proper programming language&lt;/strong&gt; for every task (check available &lt;a href=&#34;https://www.hackerrank.com/environment&#34;&gt;libraries&lt;/a&gt;) and &lt;strong&gt;store your code in a repository&lt;/strong&gt;. If you forget any previous solution it is always easy to figure it with existing code. Last, but not the least, think out of the box!&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion:74c267cb7e3ab808294ca34d7512f04c&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;HackerRank offers a variety of software engineering challenges. Most of them are similar to real life applications (including wrong spec description), therefore it serves the purpose. Do not go there to solve research problems.&lt;/p&gt;
+
+&lt;p&gt;It is fairly easy to get a four-stars badge there because of low activity of existing users, but the game only starts from there.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Lookup table maintenance in Hive</title>
