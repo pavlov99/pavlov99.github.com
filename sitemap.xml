@@ -71,6 +71,12 @@
   </url>
   
   <url>
+    <loc>http://kirillpavlov.com/</loc>
+    <lastmod>2016-09-27T08:06:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://kirillpavlov.com/categories/functional-programming/</loc>
     <lastmod>2016-02-28T21:32:38+08:00</lastmod>
     <priority>0</priority>
@@ -97,12 +103,6 @@
   <url>
     <loc>http://kirillpavlov.com/categories/infrastructure/</loc>
     <lastmod>2016-09-10T20:15:41+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/</loc>
-    <lastmod>2016-09-27T08:06:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Static Site on Kirill Pavlov</title>
+    <title>Static Site on Development and Analytics Blog</title>
     <link>http://kirillpavlov.com/categories/static-site/</link>
-    <description>Recent content in Static Site on Kirill Pavlov</description>
+    <description>Recent content in Static Site on Development and Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 22 Aug 2015 23:31:19 +0800</lastBuildDate>
