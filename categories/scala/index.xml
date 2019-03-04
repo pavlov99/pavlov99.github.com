@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Feb 2016 21:32:38 +0800</lastBuildDate>
-    <atom:link href="http://kirillpavlov.com/categories/scala/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://kirillpavlov.com/categories/scala/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Immutable heap implementation in Scala</title>
@@ -15,64 +17,8 @@
       <pubDate>Sun, 28 Feb 2016 21:32:38 +0800</pubDate>
       
       <guid>http://kirillpavlov.com/blog/2016/02/28/immutable-heap-implementation-in-scala/</guid>
-      <description>&lt;p&gt;Current &lt;a href=&#34;https://en.wikipedia.org/wiki/Heap_(data_structure)&#34;&gt;Heap&lt;/a&gt; implementation in Scala (&lt;a href=&#34;https://github.com/scala/scala/blob/2.12.x/src/library/scala/collection/mutable/PriorityQueue.scala&#34;&gt;PriorityQueue&lt;/a&gt;) is mutable. It means that after heap manipulation, the previous state is no longer accessible. This article describes immutable heap construction based on Scala Vector.&lt;/p&gt;
-
-&lt;p&gt;First of all, we need to define an interface to the Heap. It should have &lt;code&gt;insert&lt;/code&gt; and &lt;code&gt;extract&lt;/code&gt; methods.
-As far as designed data structure should be immutable, both methods should return the whole heap in addition to expected result.&lt;/p&gt;
-
-&lt;p&gt;There are two helper methods: &lt;code&gt;siftUp&lt;/code&gt; and &lt;code&gt;siftDown&lt;/code&gt;, which help to fix heap property.
-Suppose we store keys in &lt;code&gt;Vector&lt;/code&gt; of type &lt;code&gt;T&lt;/code&gt; with implicit ordering:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;class Heap[T: Ordering](val keys: Vector[T]) {
-  val keyOrdering = implicitly[Ordering[T]]
-  ...
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This definition allows us to use arbitrary type for stored objects, including (key, value) pair and use the same code for min and max heap.&lt;/p&gt;
-
-&lt;p&gt;Method &lt;code&gt;siftDown&lt;/code&gt; moves an element with greater value than it&amp;rsquo;s children down.
-Every time it selects child with minimal value and swaps current element with it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;private def siftDownKeys(keys: Vector[T], i: Int): Vector[T] = {
-  while (2 * i + 1 &amp;lt; size) {
-    val left = 2 * i + 1  // left child
-    val right = left + 1  // right child
-    var j = left
-    if (right &amp;lt; size &amp;amp;&amp;amp; keyOrdering.compare(keys(right), keys(left)) &amp;lt; 0) {j = right}
-    if (keyOrdering.compare(keys(i), keys(j)) &amp;lt;= 0) return keys
-    return siftDownKeys(swap(keys, i, j), j)
-  }
-  keys
-}
-
-private def siftDown(i: Int): Heap[T] = new Heap(siftDownKeys(keys, i))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Method &lt;code&gt;siftUp&lt;/code&gt; moves an element with smaller value than it&amp;rsquo;s parent up.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;private def siftUpKeys(keys: Vector[T], i: Int): Vector[T] = {
-  val j = (i - 1) / 2
-  while (keyOrdering.compare(keys(i), keys(j)) &amp;lt; 0)
-    return siftUpKeys(swap(keys, i, j), j)
-  keys
-}
-
-private def siftUp(i: Int): Heap[T] = new Heap(siftUpKeys(keys, i))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Using these helper methods, it is easy to implement defined interface methods:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-scala&#34;&gt;def insert(key: T): Heap[T] = new Heap(keys :+ key) siftUp size
-def extract(): (T, Heap[T]) = (
-  keys(0),
-  new Heap(keys.last +: keys.tail.dropRight(1)) siftDown 0
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Final &lt;a href=&#34;https://github.com/pavlov99/scalastructures/blob/3a938f9402ed0609c93bbfbb59e3fc83798969fc/src/main/scala/com/github/pavlov99/heap/Heap.scala&#34;&gt;implementation&lt;/a&gt; takes 74 lines, which is less than default one.
-Performance is worst compared to mutable version because of the data manipulation.&lt;/p&gt;
-</description>
+      <description>Current [Heap](https://en.wikipedia.org/wiki/Heap_(data_structure)) implementation in Scala (PriorityQueue) is mutable. It means that after heap manipulation, the previous state is no longer accessible. This article describes immutable heap construction based on Scala Vector.
+First of all, we need to define an interface to the Heap. It should have insert and extract methods. As far as designed data structure should be immutable, both methods should return the whole heap in addition to expected result.</description>
     </item>
     
   </channel>

@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="http://kirillpavlov.com/css/highlight/zenburn.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
 
   
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://kirillpavlov.com/touch-icon-144-precomposed.png">
@@ -31,12 +32,22 @@
   <meta name="description" content="Examples of DataFrame jois with spark and why output sometimes looks wrong. This article covers variety of join types, including non-equi-join and slowly changing dimensions.">
   <meta name="keywords" content="spark">
   
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-48154141-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
 </head>
 <body class="theme-base-0b">
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <img src="https://www.gravatar.com/avatar/4ad1cf8cf3515355e570a73a1cfca54e?s=200" alt="gravatar">
+      
       <h1>Kirill Pavlov</h1>
       <p class="lead">Let&rsquo;s change the world together!</p>
     </div>
@@ -52,6 +63,7 @@
       <li class="sidebar-nav-item">
       <a href="https://github.com/pavlov99"><i class="fa fa-github-square fa-3x"></i></a>
       
+      <a href="https://stackoverflow.com/users/2959541/kirill-pavlov"><i class="fa fa-stack-overflow fa-3x"></i></a>
       <a href="https://www.linkedin.com/in/pavlov99"><i class="fa fa-linkedin-square fa-3x"></i></a>
       
       
@@ -61,15 +73,18 @@
       </li>
     </ul>
 
-    <p>Copyright &copy; 2017 <a href="http://kirillpavlov.com/license/">License</a><br/>
+    
+
+    <p>Copyright &copy; 2019 <a href="http://kirillpavlov.com/license/">License</a><br/>
        Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+
   </div>
 </div>
 
 
 <div class="content container">
   <div class="post">
-    <h1>Beyond traditional join with Apache Spark</h1>
+    <h1 class="post-title">Beyond traditional join with Apache Spark</h1>
     <span class="post-date">Apr 23, 2016 &middot; 5 minute read &middot; <a href="http://kirillpavlov.com/blog/2016/04/23/beyond-traditional-join-with-apache-spark/#disqus_thread">Comments</a>
     
     <br/>
@@ -77,7 +92,7 @@
     </span>
     
 
-<p>An <a href="https://en.wikipedia.org/wiki/Join_(SQL)">SQL join</a> clause combines records from two or more tables.
+<p>An [SQL join](<a href="https://en.wikipedia.org/wiki/Join_(SQL)">https://en.wikipedia.org/wiki/Join_(SQL)</a>) clause combines records from two or more tables.
 This operation is very common in data processing and understanding of what happens under the hood is important.
 There are several common join types: <code>INNER</code>, <code>LEFT OUTER</code>, <code>RIGHT OUTER</code>, <code>FULL OUTER</code> and <code>CROSS</code> or <code>CARTESIAN</code>.</p>
 
@@ -92,11 +107,11 @@ There are several common join types: <code>INNER</code>, <code>LEFT OUTER</code>
 
 
 <p>Join which uses the same table is a self-join.
-If an operation uses equality operator, it is <a href="https://en.wikipedia.org/wiki/Join_(SQL)#Equi-join">equi-join</a>, otherwise, it is non-equi-join.</p>
+If an operation uses equality operator, it is [equi-join](<a href="https://en.wikipedia.org/wiki/Join_(SQL)#Equi-join">https://en.wikipedia.org/wiki/Join_(SQL)#Equi-join</a>), otherwise, it is non-equi-join.</p>
 
 <p>This article covers different join types in Apache Spark as well as examples of <a href="https://en.wikipedia.org/wiki/Slowly_changing_dimension">slowly changed dimensions (SCD)</a> and joins on non-unique columns.</p>
 
-<h3 id="sample-data:58684124e2b27686159fe7ccddda41aa">Sample data</h3>
+<h3 id="sample-data">Sample data</h3>
 
 <p>All subsequent explanations on join types in this article make use of the following two tables, taken from Wikipedia article.
 The rows in these tables serve to illustrate the effect of different types of joins and join-predicates.</p>
@@ -140,7 +155,7 @@ departments.show()
 +------------+--------------+
 </code></pre>
 
-<h3 id="inner-join:58684124e2b27686159fe7ccddda41aa">Inner join</h3>
+<h3 id="inner-join">Inner join</h3>
 
 <p>Following SQL code</p>
 
@@ -169,7 +184,7 @@ ON employee.DepartmentID = department.DepartmentID;
 
 <p>Beautiful, is not it? Spark automatically removes duplicated &ldquo;DepartmentID&rdquo; column, so column names are unique and one does not need to use table prefix to address them.</p>
 
-<h3 id="left-outer-join:58684124e2b27686159fe7ccddda41aa">Left outer join</h3>
+<h3 id="left-outer-join">Left outer join</h3>
 
 <p>Left outer join is a very common operation, especially if there are nulls or gaps in a data.
 Note, that column name should be wrapped into scala <code>Seq</code> if join type is specified.</p>
@@ -190,7 +205,7 @@ Note, that column name should be wrapped into scala <code>Seq</code> if join typ
 +------------+----------+--------------+
 </code></pre>
 
-<h3 id="other-join-types:58684124e2b27686159fe7ccddda41aa">Other join types</h3>
+<h3 id="other-join-types">Other join types</h3>
 
 <p>Spark allows using following join types: <code>inner</code>, <code>outer</code>, <code>left_outer</code>, <code>right_outer</code>, <code>leftsemi</code>.
 The interface is the same as for left outer join in the example above.</p>
@@ -220,7 +235,7 @@ only showing top 10 rows
 
 <p>Warning: do not use cartesian join with big tables in production.</p>
 
-<h3 id="join-expression-slowly-changing-dimensions-and-non-equi-join:58684124e2b27686159fe7ccddda41aa">Join expression, slowly changing dimensions and non-equi join</h3>
+<h3 id="join-expression-slowly-changing-dimensions-and-non-equi-join">Join expression, slowly changing dimensions and non-equi join</h3>
 
 <p>Spark allows us to specify join expression instead of a sequence of columns.
 In general, expression specification is less readable, so why do we need such flexibility?
@@ -285,7 +300,7 @@ It is not obvious to do using only equality operators, however, spark join expre
 <p>This technique is very useful, yet not that common.
 It could save a lot of time for those who write as well as for those who read the code.</p>
 
-<h3 id="inner-join-using-non-primary-keys:58684124e2b27686159fe7ccddda41aa">Inner join using non primary keys</h3>
+<h3 id="inner-join-using-non-primary-keys">Inner join using non primary keys</h3>
 
 <p>Last part of this article is about joins on non unique columns and common mistakes related to it.
 Join (intersection) diagrams in the beginning of this article stuck in our heads.
@@ -323,7 +338,7 @@ df.join(df, &quot;c1&quot;).show()
 
 <p>Note, that size of the result DataFrame is bigger than the source size. It could be as big as n<sup>2</sup>, where n is a size of source.</p>
 
-<h3 id="conclusion:58684124e2b27686159fe7ccddda41aa">Conclusion</h3>
+<h3 id="conclusion">Conclusion</h3>
 
 <p>The article covered different join types implementations with Apache Spark, including join expressions and join on non-unique keys.</p>
 
@@ -359,14 +374,6 @@ var disqus_shortname = "kirillpavlovcom";
 
 <script src="http://kirillpavlov.com/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-
-<script>
-  var _gaq=[['_setAccount','UA-48154141-1'],['_trackPageview']];
-  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-  s.parentNode.insertBefore(g,s)}(document,'script'));
-</script>
-
 </body>
 </html>
 
