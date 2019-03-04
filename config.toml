@@ -4,7 +4,7 @@ disqusShortname = "kirillpavlovcom"
 languageCode = "en-us"
 paginate = 10
 theme = "hyde-x"
-title = "Kirill Pavlov"
+title = "Development and Analytics Blog"
 
 [author]
     name = "Kirill Pavlov"
@@ -17,7 +17,7 @@ title = "Kirill Pavlov"
 [params]
     # Default page metadata, used when the specific page doesn't set its own.
     defaultDescription = "Personal website, where my information is shared. It has posts about tech, data mining, software and stock trading."
-    defaultKeywords = "kirill pavlov,software,blog,cv,development,data mining,trading,analysis"
+    defaultKeywords = "software,blog,cv,development,data mining data science,trading,analysis"
 
     # Changes sidebar background and link/accent colours.
     # This also works: "theme-base-0c layout-reverse", or just "layout-reverse".
@@ -33,7 +33,7 @@ title = "Kirill Pavlov"
 
     # Metadata used to drive integrations.
     googleAnalytics = "UA-48154141-1"
-    gravatarHash = "4ad1cf8cf3515355e570a73a1cfca54e"
+    gravatarHash = "620d06a9f1a2af9f65908d76830f7dd9"
 
     # Social links
     github = "https://github.com/pavlov99"
