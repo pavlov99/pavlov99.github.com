@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Kirill Pavlov</title>
+    <link>http://kirillpavlov.com/categories/</link>
+    <description>Recent content in Categories on Kirill Pavlov</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Aug 2015 06:18:14 +0000</lastBuildDate>
+    
+	<atom:link href="http://kirillpavlov.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bash</title>
+      <link>http://kirillpavlov.com/categories/bash/</link>
+      <pubDate>Thu, 27 Aug 2015 06:18:14 +0000</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Build Manager</title>
+      <link>http://kirillpavlov.com/categories/build-manager/</link>
+      <pubDate>Mon, 22 Feb 2016 20:09:47 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/build-manager/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Functional Programming</title>
+      <link>http://kirillpavlov.com/categories/functional-programming/</link>
+      <pubDate>Sun, 28 Feb 2016 21:32:38 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/functional-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>http://kirillpavlov.com/categories/golang/</link>
+      <pubDate>Sat, 20 Feb 2016 23:06:18 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hive</title>
+      <link>http://kirillpavlov.com/categories/hive/</link>
+      <pubDate>Sat, 10 Sep 2016 20:15:41 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/hive/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>http://kirillpavlov.com/categories/hugo/</link>
+      <pubDate>Sat, 22 Aug 2015 23:31:19 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Infrastructure</title>
+      <link>http://kirillpavlov.com/categories/infrastructure/</link>
+      <pubDate>Sat, 10 Sep 2016 20:15:41 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/infrastructure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Machine Learning</title>
+      <link>http://kirillpavlov.com/categories/machine-learning/</link>
+      <pubDate>Tue, 27 Sep 2016 08:06:30 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Maintenance</title>
+      <link>http://kirillpavlov.com/categories/maintenance/</link>
+      <pubDate>Sat, 10 Sep 2016 20:15:41 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/maintenance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Maven</title>
+      <link>http://kirillpavlov.com/categories/maven/</link>
+      <pubDate>Mon, 22 Feb 2016 20:09:47 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/maven/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mvn</title>
+      <link>http://kirillpavlov.com/categories/mvn/</link>
+      <pubDate>Mon, 22 Feb 2016 20:09:47 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/mvn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Scala</title>
+      <link>http://kirillpavlov.com/categories/scala/</link>
+      <pubDate>Sun, 28 Feb 2016 21:32:38 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/scala/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spark</title>
+      <link>http://kirillpavlov.com/categories/spark/</link>
+      <pubDate>Sat, 23 Apr 2016 09:40:05 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/spark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spark Mllib</title>
+      <link>http://kirillpavlov.com/categories/spark-mllib/</link>
+      <pubDate>Sun, 21 Feb 2016 00:20:45 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/spark-mllib/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Static Site</title>
+      <link>http://kirillpavlov.com/categories/static-site/</link>
+      <pubDate>Sat, 22 Aug 2015 23:31:19 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/categories/static-site/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -7,7 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 20 Feb 2016 23:06:18 +0800</lastBuildDate>
-    <atom:link href="http://kirillpavlov.com/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="http://kirillpavlov.com/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Go versions, how to make updates easier</title>
@@ -15,24 +17,10 @@
       <pubDate>Sat, 20 Feb 2016 23:06:18 +0800</pubDate>
       
       <guid>http://kirillpavlov.com/blog/2016/02/20/go-versions-how-to-make-updates-easier/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; is an open source programming language that makes it easy to build simple, reliable, and efficient software.&lt;/p&gt;
-
-&lt;p&gt;Because of its rapid development, there is an issue with version updates.
-It requires not only download and compile new version, but also update &lt;code&gt;$GOROOT&lt;/code&gt; and &lt;code&gt;$GOPATH&lt;/code&gt; environment variables.&lt;/p&gt;
-
-&lt;p&gt;One way to simplify this process is to use version manager, such as &lt;a href=&#34;https://github.com/moovweb/gvm&#34;&gt;gvm&lt;/a&gt;.
-Installations process is super easy:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;bash &amp;lt; &amp;lt;(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To install proper version of Go use:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;gvm install go1.6
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As simple as that.&lt;/p&gt;
-</description>
+      <description>Go is an open source programming language that makes it easy to build simple, reliable, and efficient software.
+Because of its rapid development, there is an issue with version updates. It requires not only download and compile new version, but also update $GOROOT and $GOPATH environment variables.
+One way to simplify this process is to use version manager, such as gvm. Installations process is super easy:
+bash &amp;lt; &amp;lt;(curl -s -S -L https://raw.</description>
     </item>
     
     <item>
@@ -41,74 +29,8 @@ Installations process is super easy:&lt;/p&gt;
       <pubDate>Sat, 22 Aug 2015 23:31:19 +0800</pubDate>
       
       <guid>http://kirillpavlov.com/blog/2015/08/22/static-site-generator-for-personal-blog/</guid>
-      <description>&lt;p&gt;Many of us would like to have personal identity in the Internet, write blog, share pictures, code and discuss interesting topics.
-For tech related articles social networks would not be enought and we should look for personal blog or website solution.
-Here I would like to explain some ideas behing my choice &amp;ndash; &lt;a href=&#34;https://gohugo.io&#34;&gt;hugo&lt;/a&gt;, static site generator written in &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;First of all, let us write down requirements for personal page:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Web site should work even if we dont have time to support it&lt;/li&gt;
-&lt;li&gt;It should support custom domains&lt;/li&gt;
-&lt;li&gt;In case of blog, we should be able to add articles easily and deployment should not be problem&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;A while ago I had personal page, stored on virtual machine in some cloud service.
-This requires me to pay for VM and causes deployment difficulties.
-I realized, that solution should be different.&lt;/p&gt;
-
-&lt;p&gt;WordPress offers good service, but price of custom domain makes use of it questionable.
-My decision was to use static site generator and deploy it to GitHub, because it is free.
-I did not want to customise site a lot from the beginning, content is more important at that period.
-Moreover, additional tools, such as Google Analytics and Discus comes with framework.&lt;/p&gt;
-
-&lt;p&gt;There are &lt;a href=&#34;https://www.staticgen.com/&#34;&gt;a lot of static site generators&lt;/a&gt; on the market.
-How to choose right one?
-My goal was to choose something simple, yet flexible to be able to use it in other projects as well.&lt;/p&gt;
-
-&lt;p&gt;First of all I checked python Pelican, because of my language knowledge.
-It looks very similar to Django.
-I did not really find it interesting and it&amp;rsquo;s own website was a bit ugly.&lt;/p&gt;
-
-&lt;p&gt;Next, I try JavaScript based generators.
-From my point of view, technology itself should be as close to frontend development as possible.
-For example, I would rather go for JavaScript instead of Ruby.
-I was not able to setup Assemble in 20-30 minutes and found it not easy to work with.
-Another JavaScript tools I try were Metalsmith and Hexo.
-They require their custom plugins for everything and I don&amp;rsquo;t understand, why it is better than more generic plugins of Grunt or Gulp.&lt;/p&gt;
-
-&lt;p&gt;Next candidate was Jekyll.
-It has at least twice as more GitHub stars, than second popular solution.
-It is also default GitHub pages solution.
-Frankly speaking, Jekyll looks good, but a bit big, so it might be difficult to write own plugins.
-At that point of time, I wanted to avoid Ruby and try something else.&lt;/p&gt;
-
-&lt;p&gt;My final choice was Hugo.
-It is program, written in Golang, which provides functionality to create, develop and build static website.
-As advantages I would like to mention:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Blazing fast build time (under 0.1 sec)&lt;/li&gt;
-&lt;li&gt;Tag support: it generates search result pages for every tag used&lt;/li&gt;
-&lt;li&gt;It has not only blog support, user could create any page with any url&lt;/li&gt;
-&lt;li&gt;Google Analytics, Discuss, Gravatar, Social integration come out of the box&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;During development I use &lt;em&gt;develop&lt;/em&gt; branch for source code.
-Hugo builds statis pages in &lt;em&gt;public&lt;/em&gt; folder, which is pushed to master branch using git-subtree.
-You could read about this technique &lt;a href=&#34;http://gohugo.io/tutorials/github-pages-blog/#configure-git-workflow&#34;&gt;here&lt;/a&gt;.
-To simplify deployment, there is Makefile command with following code:&lt;/p&gt;
-
-&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;hugo
-git add -A
-git commit -m &lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;rebuilding site &amp;#39;&lt;/span&gt;&lt;span style=&#34;color: #66d9ef&#34;&gt;$(&lt;/span&gt;shell date&lt;span style=&#34;color: #66d9ef&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;#39;&amp;quot;&lt;/span&gt;
-git push origin develop
-git subtree push --prefix&lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt;public git@github.com:pavlov99/pavlov99.github.com.git master
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;I would like to recommend Hugo for anybody, who wants to build static pages.&lt;/p&gt;
-</description>
+      <description>Many of us would like to have personal identity in the Internet, write blog, share pictures, code and discuss interesting topics. For tech related articles social networks would not be enought and we should look for personal blog or website solution. Here I would like to explain some ideas behing my choice &amp;ndash; hugo, static site generator written in Go.
+First of all, let us write down requirements for personal page:</description>
     </item>
     
   </channel>

@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="http://kirillpavlov.com/css/highlight/zenburn.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
 
   
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://kirillpavlov.com/touch-icon-144-precomposed.png">
@@ -31,12 +32,22 @@
   <meta name="description" content="Data sampling with bash.">
   <meta name="keywords" content="bash,sampling">
   
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-48154141-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
 </head>
 <body class="theme-base-0b">
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <img src="https://www.gravatar.com/avatar/4ad1cf8cf3515355e570a73a1cfca54e?s=200" alt="gravatar">
+      
       <h1>Kirill Pavlov</h1>
       <p class="lead">Let&rsquo;s change the world together!</p>
     </div>
@@ -52,6 +63,7 @@
       <li class="sidebar-nav-item">
       <a href="https://github.com/pavlov99"><i class="fa fa-github-square fa-3x"></i></a>
       
+      <a href="https://stackoverflow.com/users/2959541/kirill-pavlov"><i class="fa fa-stack-overflow fa-3x"></i></a>
       <a href="https://www.linkedin.com/in/pavlov99"><i class="fa fa-linkedin-square fa-3x"></i></a>
       
       
@@ -61,15 +73,18 @@
       </li>
     </ul>
 
-    <p>Copyright &copy; 2017 <a href="http://kirillpavlov.com/license/">License</a><br/>
+    
+
+    <p>Copyright &copy; 2019 <a href="http://kirillpavlov.com/license/">License</a><br/>
        Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+
   </div>
 </div>
 
 
 <div class="content container">
   <div class="post">
-    <h1>Get random lines from file with bash</h1>
+    <h1 class="post-title">Get random lines from file with bash</h1>
     <span class="post-date">Aug 27, 2015 &middot; 3 minute read &middot; <a href="http://kirillpavlov.com/blog/2015/08/27/get-random-lines-from-file-with-bash/#disqus_thread">Comments</a>
     
     <br/>
@@ -99,7 +114,7 @@ NUMLINES=10000000
 seq -f 'line %.0f' $NUMLINES &gt; $FILENAME;
 </code></pre>
 
-<h2 id="sort:7f16ea4a76eb101e46f16364e2326e6b">sort</h2>
+<h2 id="sort">sort</h2>
 
 <p>Default <code>sort</code> has option <code>-R</code>, <code>--random-sort</code> which sorts lines by random hash. However, if there are two lines with the same content, their hashes would be the same and they would be sorted one after another. To prevent such case, one may possible to make all of the lines unique via adding line number to all of them.</p>
 
@@ -112,7 +127,7 @@ seq -f 'line %.0f' $NUMLINES &gt; $FILENAME;
 
 <p>Availability: good</p>
 
-<h2 id="shuf:7f16ea4a76eb101e46f16364e2326e6b">shuf</h2>
+<h2 id="shuf">shuf</h2>
 
 <p>Another bash tool <code>shuf</code> on the other hand will sufficiently randomize a list, including not putting duplicate lines next to each other. Another advantage of this tool is it&rsquo;s availability. Being part of GNU core utils it is available on nearly every machine.</p>
 
@@ -127,7 +142,7 @@ seq -f 'line %.0f' $NUMLINES &gt; $FILENAME;
 
 <p>Availability: good</p>
 
-<h2 id="randomized-lines:7f16ea4a76eb101e46f16364e2326e6b">randomized-lines</h2>
+<h2 id="randomized-lines">randomized-lines</h2>
 
 <p>Tool <code>rl</code> from <a href="http://manpages.ubuntu.com/manpages/wily/en/man1/rl.1.html">randomize-lines</a> package makes random sampling easy, however, not every machine has it. As mentioned in it&rsquo;s description: &ldquo;It does this with only a single pass over the input while trying to use as little memory as possible&rdquo;.</p>
 
@@ -140,7 +155,7 @@ seq -f 'line %.0f' $NUMLINES &gt; $FILENAME;
 
 <p>Availability: bad, need to install from external repository</p>
 
-<h2 id="perl:7f16ea4a76eb101e46f16364e2326e6b">perl</h2>
+<h2 id="perl">perl</h2>
 
 <p>Perl is a good language for text processing. For those developers, who are less familiar with bash, it might be native to try it first.</p>
 
@@ -153,7 +168,7 @@ seq -f 'line %.0f' $NUMLINES &gt; $FILENAME;
 
 <p>Complexity: medium, need to remember how to call perl from bash and include libraries</p>
 
-<h2 id="python:7f16ea4a76eb101e46f16364e2326e6b">python</h2>
+<h2 id="python">python</h2>
 
 <p>Python is among most popular programming languages. Nowadays it exists on nearly every machine and a lot of developers worked with it at least once. It has library to work with random numbers and shuffles. As well as perl, it could be invoked from bash.</p>
 
@@ -168,12 +183,12 @@ seq -f 'line %.0f' $NUMLINES &gt; $FILENAME;
 
 <p>Complexity: medium, need to remember how to call python from bash and include libraries</p>
 
-<h2 id="conclusion:7f16ea4a76eb101e46f16364e2326e6b">Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 
 <p>To sample random lines from command line, default <code>shuf</code> from core utils is probably the best choice. It is very easy to use and outperforms others in term of execution time.
 However, everything depends on a task. For machine learning problems sampling is not a bottleneck and might not require fastest execution.</p>
 
-<h2 id="appendix:7f16ea4a76eb101e46f16364e2326e6b">Appendix</h2>
+<h2 id="appendix">Appendix</h2>
 
 <p>Gist with benchmark file:
 <script src="//gist.github.com/34836af4fa1d6c2a0dfa.js"></script>
@@ -209,14 +224,6 @@ var disqus_shortname = "kirillpavlovcom";
 
 <script src="http://kirillpavlov.com/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-
-<script>
-  var _gaq=[['_setAccount','UA-48154141-1'],['_trackPageview']];
-  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-  s.parentNode.insertBefore(g,s)}(document,'script'));
-</script>
-
 </body>
 </html>
 
