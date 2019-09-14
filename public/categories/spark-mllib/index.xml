@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Spark Mllib on Development and Analytics Blog</title>
+    <title>spark mllib on Development and Analytics Blog</title>
     <link>http://kirillpavlov.com/categories/spark-mllib/</link>
-    <description>Recent content in Spark Mllib on Development and Analytics Blog</description>
+    <description>Recent content in spark mllib on Development and Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 21 Feb 2016 00:20:45 +0800</lastBuildDate>

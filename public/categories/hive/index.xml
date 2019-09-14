@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hive on Development and Analytics Blog</title>
+    <title>hive on Development and Analytics Blog</title>
     <link>http://kirillpavlov.com/categories/hive/</link>
-    <description>Recent content in Hive on Development and Analytics Blog</description>
+    <description>Recent content in hive on Development and Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 10 Sep 2016 20:15:41 +0800</lastBuildDate>

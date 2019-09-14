@@ -6,10 +6,23 @@
     <description>Recent content on Development and Analytics Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 27 Sep 2016 08:06:30 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 15 Sep 2019 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="http://kirillpavlov.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Promo &amp; Referral links</title>
+      <link>http://kirillpavlov.com/referrals/</link>
+      <pubDate>Sun, 15 Sep 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://kirillpavlov.com/referrals/</guid>
+      <description>Services I&amp;rsquo;m happy to recommend:
+Neat - Easy banking for your business in Hong Kong. Accounting services come on top. Good for newly established firms.
+Tinkoff - Amazing virtual bank experience.
+Drimsim - great sim card for travelers. Cheap roaming everywhere.
+Uber - Invitation Code: kirillp145ue</description>
+    </item>
     
     <item>
       <title>From zero to four: how to get top machine learning badge on HackerRank</title>

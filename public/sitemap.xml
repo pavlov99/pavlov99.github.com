@@ -3,106 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://kirillpavlov.com/</loc>
+    <lastmod>2019-09-15T00:00:00+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/referrals/</loc>
+    <lastmod>2019-09-15T00:00:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/categories/</loc>
+    <lastmod>2016-09-27T08:06:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://kirillpavlov.com/blog/2016/09/27/from-zero-to-four-how-to-get-top-machine-learning-badge-on-hackerrank/</loc>
     <lastmod>2016-09-27T08:06:30+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://kirillpavlov.com/blog/2016/09/10/lookup-table-maintenance-in-hive/</loc>
-    <lastmod>2016-09-10T20:15:41+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/blog/2016/04/23/beyond-traditional-join-with-apache-spark/</loc>
-    <lastmod>2016-04-23T09:40:05+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/blog/2016/02/28/immutable-heap-implementation-in-scala/</loc>
-    <lastmod>2016-02-28T21:32:38+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/blog/2016/02/22/how-to-update-your-maven/</loc>
-    <lastmod>2016-02-22T20:09:47+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/blog/2016/02/21/top-5-features-released-in-spark-1.6/</loc>
-    <lastmod>2016-02-21T00:20:45+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/blog/2016/02/20/go-versions-how-to-make-updates-easier/</loc>
-    <lastmod>2016-02-20T23:06:18+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/blog/2015/08/27/get-random-lines-from-file-with-bash/</loc>
-    <lastmod>2015-08-27T06:18:14+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/blog/2015/08/22/static-site-generator-for-personal-blog/</loc>
-    <lastmod>2015-08-22T23:31:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/about/</loc>
-    <lastmod>2015-08-09T16:20:37+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/categories/bash/</loc>
-    <lastmod>2015-08-27T06:18:14+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/categories/build-manager/</loc>
-    <lastmod>2016-02-22T20:09:47+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/categories/</loc>
-    <lastmod>2015-08-27T06:18:14+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/</loc>
+    <loc>http://kirillpavlov.com/post/</loc>
     <lastmod>2016-09-27T08:06:30+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/categories/functional-programming/</loc>
-    <lastmod>2016-02-28T21:32:38+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/categories/golang/</loc>
-    <lastmod>2016-02-20T23:06:18+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/categories/hive/</loc>
-    <lastmod>2016-09-10T20:15:41+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/categories/hugo/</loc>
-    <lastmod>2015-08-22T23:31:19+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/categories/infrastructure/</loc>
-    <lastmod>2016-09-10T20:15:41+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -113,8 +37,64 @@
   </url>
   
   <url>
+    <loc>http://kirillpavlov.com/blog/2016/09/10/lookup-table-maintenance-in-hive/</loc>
+    <lastmod>2016-09-10T20:15:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/categories/hive/</loc>
+    <lastmod>2016-09-10T20:15:41+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/categories/infrastructure/</loc>
+    <lastmod>2016-09-10T20:15:41+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://kirillpavlov.com/categories/maintenance/</loc>
     <lastmod>2016-09-10T20:15:41+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/blog/2016/04/23/beyond-traditional-join-with-apache-spark/</loc>
+    <lastmod>2016-04-23T09:40:05+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/categories/spark/</loc>
+    <lastmod>2016-04-23T09:40:05+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/blog/2016/02/28/immutable-heap-implementation-in-scala/</loc>
+    <lastmod>2016-02-28T21:32:38+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/categories/functional-programming/</loc>
+    <lastmod>2016-02-28T21:32:38+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/categories/scala/</loc>
+    <lastmod>2016-02-28T21:32:38+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/blog/2016/02/22/how-to-update-your-maven/</loc>
+    <lastmod>2016-02-22T20:09:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/categories/build-manager/</loc>
+    <lastmod>2016-02-22T20:09:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -131,21 +111,8 @@
   </url>
   
   <url>
-    <loc>http://kirillpavlov.com/post/</loc>
-    <lastmod>2016-09-27T08:06:30+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/categories/scala/</loc>
-    <lastmod>2016-02-28T21:32:38+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://kirillpavlov.com/categories/spark/</loc>
-    <lastmod>2016-04-23T09:40:05+08:00</lastmod>
-    <priority>0</priority>
+    <loc>http://kirillpavlov.com/blog/2016/02/21/top-5-features-released-in-spark-1.6/</loc>
+    <lastmod>2016-02-21T00:20:45+08:00</lastmod>
   </url>
   
   <url>
@@ -155,9 +122,47 @@
   </url>
   
   <url>
+    <loc>http://kirillpavlov.com/blog/2016/02/20/go-versions-how-to-make-updates-easier/</loc>
+    <lastmod>2016-02-20T23:06:18+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/categories/golang/</loc>
+    <lastmod>2016-02-20T23:06:18+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/blog/2015/08/27/get-random-lines-from-file-with-bash/</loc>
+    <lastmod>2015-08-27T06:18:14+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/categories/bash/</loc>
+    <lastmod>2015-08-27T06:18:14+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/blog/2015/08/22/static-site-generator-for-personal-blog/</loc>
+    <lastmod>2015-08-22T23:31:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/categories/hugo/</loc>
+    <lastmod>2015-08-22T23:31:19+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://kirillpavlov.com/categories/static-site/</loc>
     <lastmod>2015-08-22T23:31:19+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://kirillpavlov.com/about/</loc>
+    <lastmod>2015-08-09T16:20:37+08:00</lastmod>
   </url>
   
   <url>
