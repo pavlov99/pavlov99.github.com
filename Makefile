@@ -1,3 +1,5 @@
+HUGO=docker run --rm -it --volume $(CURDIR):/src --publish 1313:1313 --user hugo jguyomard/hugo-builder:0.55-extras hugo
+
 .PHONY: help
 # target: help - Display callable targets
 help:
@@ -5,8 +7,11 @@ help:
 
 .PHONY: run
 run: clean
-	@hugo server --buildDrafts --watch --bind=0.0.0.0
+	$(HUGO) server --buildDrafts --watch --bind=0.0.0.0
 
+.PHONY: build
+build: clean
+	$(HUGO)
 
 .PHONY: clean
 clean:
@@ -16,7 +21,7 @@ clean:
 deploy: clean
 	@echo -e "\033[0;32mDeploying updates to GitHub...\033[0m"
 	@git checkout develop
-	@hugo
+	$(HUGO)
 	@git add -A
 	@git commit -m "rebuilding site '$(shell date)'"
 	@git push origin develop
