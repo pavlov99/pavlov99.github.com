@@ -1,0 +1,20 @@
+MetaDataFormat = "toml"
+baseurl = "http://kirillpavlov.com/"
+disqusShortname = "kirillpavlovcom"
+languageCode = "en-us"
+paginate = 10
+theme = "hyde-x"
+title = "Development and Analytics Blog"
+
+[author]
+    name = "Kirill Pavlov"
+
+[permalinks]
+    # Change the permalink format for the 'post' content type.
+    post = "/blog/:year/:month/:day/:title/"
+
+[menus]
+  main = [
+      {Name = "About", URL = "/about"},
+      {Name = "Referral Links", URL = "/referrals"}
+  ]
