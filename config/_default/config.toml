@@ -1,10 +1,9 @@
 MetaDataFormat = "toml"
+title = "Development and Analytics Blog"
 baseurl = "http://kirillpavlov.com/"
 disqusShortname = "kirillpavlovcom"
-languageCode = "en-us"
 paginate = 10
-theme = "hyde-x"
-title = "Development and Analytics Blog"
+
 
 [author]
     name = "Kirill Pavlov"

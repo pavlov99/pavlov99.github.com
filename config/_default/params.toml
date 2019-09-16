@@ -1,6 +1,6 @@
 # Default page metadata, used when the specific page doesn't set its own.
-defaultDescription = "Personal website, where my information is shared. It has posts about tech, data mining, software and stock trading."
-defaultKeywords = "software,blog,cv,development,data mining data science,trading,analysis"
+defaultDescription = "Personal website with the blog about technologies, software development and data analytics"
+defaultKeywords = "blog,software,development,analytics,data mining,data science"
 
 # Changes sidebar background and link/accent colours.
 # This also works: "theme-base-0c layout-reverse", or just "layout-reverse".
