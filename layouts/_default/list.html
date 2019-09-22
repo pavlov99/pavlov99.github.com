@@ -1,7 +1,6 @@
 {{ define "main" -}}
 <ul class="posts">
-  {{ $paginator := .Paginate (where (where .Site.Pages "Type" "post") "Kind" "page") }}
-  {{ range $paginator.Pages }}
+  {{ range .Pages }}
   <li class="post">
     <h1 class="post__title">
       <a href="{{ .Permalink }}">{{ .Title }}</a>
@@ -18,19 +17,7 @@
       {{ end }}
     </ul>
     {{ end }}
-    <div class="post__preview">
-      {{ if eq .Site.Params.truncate false }}
-        {{ .Content }}
-        {{ else if .Description }}
-        <p>{{ .Description }}</p>
-        <a href="{{ .Permalink }}">Read On &rarr;</a>
-      {{ else }}
-        {{ .Summary }}
-        {{ if .Truncated }}<a href="{{ .Permalink }}">Read On &rarr;</a>{{ end }}
-      {{ end }}
-    </div>
   </li>
   {{ end }}
-  {{ template "_internal/pagination.html" . }}
 </ul>
 {{- end }}

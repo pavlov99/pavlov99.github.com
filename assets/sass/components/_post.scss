@@ -1,0 +1,41 @@
+.posts {
+    list-style: none;
+    
+}
+
+.post {
+    &__title {
+        color: $color-primary;
+
+        a {
+            color: currentColor;
+        }
+    }
+
+    &__meta {
+        &:not(:last-child) {
+            margin-right: 5rem;
+        }
+    }
+
+    &__categories {
+    }
+
+    &__category {
+        background-color: $color-primary;
+        color: $color-white;
+        cursor: pointer;
+        text-decoration: none;
+        padding: 0.2rem 0.6rem;
+        font-weight: bold;
+        text-align: center;
+        white-space: nowrap;
+        border-radius: 0.3rem;
+    }
+
+    &__preview {
+        a {
+            color: $color-primary;
+        }
+    }
+}

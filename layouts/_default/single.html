@@ -1,0 +1,10 @@
+{{ define "main" -}}
+<ul class="posts">
+  <li class="post">
+    <h1 class="post__title">
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </h1>
+    {{ .Content }}
+  </li>
+</ul>
+{{- end }}
