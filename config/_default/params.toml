@@ -2,24 +2,5 @@
 defaultDescription = "Personal website with the blog about technologies, software development and data analytics"
 defaultKeywords = "blog,software,development,analytics,data mining,data science"
 
-# Changes sidebar background and link/accent colours.
-# This also works: "theme-base-0c layout-reverse", or just "layout-reverse".
-theme = "theme-base-0b"
-
-# Select a syntax highight.
-# Check the static/css/highlight directory for options.
-highlight = "zenburn"
-
-# Tagline to display under the author name in the sidebar, keep it short.
-# You can use markdown here.
-tagline = "Let's change the world together!"
-
-# Metadata used to drive integrations.
-googleAnalytics = "UA-48154141-1"
-gravatarHash = "620d06a9f1a2af9f65908d76830f7dd9"
-
-# Social links
-github = "https://github.com/pavlov99"
-linkedin = "https://www.linkedin.com/in/pavlov99"
-twitter = "http://twitter.com/pavlov99"
-stackoverflow = "https://stackoverflow.com/users/2959541/kirill-pavlov"
+author = "Kirill Pavlov"
+disqusShortname = "kirillpavlovcom"

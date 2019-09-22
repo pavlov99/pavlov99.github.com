@@ -1,19 +1,7 @@
-MetaDataFormat = "toml"
-title = "Development and Analytics Blog"
 baseurl = "http://kirillpavlov.com/"
-disqusShortname = "kirillpavlovcom"
-paginate = 10
-
-
-[author]
-    name = "Kirill Pavlov"
+googleAnalytics = "UA-48154141-1"
+title = "Development and Analytics Blog"
 
 [permalinks]
-    # Change the permalink format for the 'post' content type.
-    post = "/blog/:year/:month/:day/:title/"
-
-[menus]
-  main = [
-      {Name = "About", URL = "/about"},
-      {Name = "Referral Links", URL = "/referrals"}
-  ]
+  # Change the permalink format for the 'post' content type.
+  post = "/blog/:year/:month/:day/:title/"
