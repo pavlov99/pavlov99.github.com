@@ -1,4 +1,5 @@
-HUGO=docker run --rm -it --volume $(CURDIR):/src --publish 1313:1313 --user hugo --name=hugo jguyomard/hugo-builder:0.55-extras hugo
+# HUGO=docker run --rm -it --volume $(CURDIR):/src --publish 1313:1313 --user hugo --name=hugo jguyomard/hugo-builder:0.55-extras hugo
+HUGO=hugo
 
 .PHONY: help
 # target: help - Display callable targets
@@ -29,7 +30,7 @@ run: clean
 .PHONY: build
 # target: build - Build a production version of the site
 build: clean
-	$(HUGO)
+	HUGO_ENV="production" $(HUGO)
 
 .PHONY: clean
 clean:

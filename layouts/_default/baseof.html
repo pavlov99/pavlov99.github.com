@@ -6,6 +6,8 @@
       {{ block "main" . -}}{{- end }}
     </main>
   </div>
-  {{ template "_internal/google_analytics_async.html" . }}
+  {{ if eq (getenv "HUGO_ENV") "production" }}
+    {{ template "_internal/google_analytics_async.html" . }}
+  {{ end }}
 </body>
 </html>
