@@ -1,0 +1,11 @@
+{{ partial "head.html" . }}
+<body>
+  <div class="content">
+    {{ partial "sidebar.html" . }}
+    <main class="main">
+      {{ block "main" . -}}{{- end }}
+    </main>
+  </div>
+  {{ template "_internal/google_analytics_async.html" . }}
+</body>
+</html>

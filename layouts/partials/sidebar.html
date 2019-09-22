@@ -1,0 +1,19 @@
+<nav class="sidebar">
+  <ul class="sidebar-nav">
+    <li class="sidebar-nav__item">
+      <a class="sidebar-nav__link" href="{{ "/" | absURL }}">
+        <span>Blog</span>
+      </a>
+    </li>
+    {{ range .Site.Menus.main }}
+    <li class="sidebar-nav__item">
+      <a class="sidebar-nav__link" href="{{ .URL | absURL }}">
+        <span>{{ .Name }}</span>
+      </a>
+    </li>
+    {{end}}
+  </ul>
+  <div class="legal">
+    &copy; 2015 with ❤ by {{ .Site.Params.author }}
+  </div>
+</nav>
