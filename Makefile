@@ -30,7 +30,7 @@ run: clean
 .PHONY: build
 # target: build - Build a production version of the site
 build: clean
-	HUGO_ENV="production" $(HUGO)
+	$(HUGO)
 
 .PHONY: clean
 clean:

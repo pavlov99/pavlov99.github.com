@@ -6,7 +6,7 @@
       {{ block "main" . -}}{{- end }}
     </main>
   </div>
-  {{ if eq (getenv "HUGO_ENV") "production" }}
+  {{ if not .Site.IsServer }}
     {{ template "_internal/google_analytics_async.html" . }}
   {{ end }}
 </body>
