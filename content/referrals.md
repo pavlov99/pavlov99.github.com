@@ -1,7 +1,7 @@
 +++
 date = "2019-09-15T00:00:00+08:00"
 draft = false
-title = "Promo & Referral links"
+title = "Referral Links"
 description = "Referral links"
 keywords = ["promo codes", "referral"]
 menu = "main"
