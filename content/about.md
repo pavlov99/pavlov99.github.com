@@ -8,7 +8,7 @@ menu = "main"
 
 +++
 
-Hi! My name is Kirill Pavlov, I'm a data scientist and software engeneer.
+Hi! My name is Kirill Pavlov, I'm a data scientist and software engineer.
 While I'm working on content update, check out my [CV](https://www.dropbox.com/s/wjblmojj1jp5f3r/resume-kirill-pavlov.pdf?dl=0),
 [github resume](http://resume.github.io/?pavlov99), [hackerrank](http://www.hackerrank.com/pavlov99) and [kaggle](http://www.kaggle.com/pavlov99).
 
